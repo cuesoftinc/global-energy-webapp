@@ -1,0 +1,22 @@
+@use "../../scss//global/colors" as *;
+@use "../../scss/utils/functions" as fn;
+
+.main {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 220px auto;
+  background-color: #f8f8f8;
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+
+  .outletContainer {
+    .outlet {
+      min-height: calc(100vh - 82px);
+      padding: 42px 33px;
+    }
+  }
+}
