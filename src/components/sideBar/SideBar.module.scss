@@ -12,16 +12,19 @@
 
   .logoContainer {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    color: $white;
     .logo {
-      margin-bottom: fn.rem(64);
+      margin-bottom: fn.rem(50);
     }
   }
 
   .bottom {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: fn.rem(180);
+    height: 100%;
     overflow-y: scroll;
 
     @media screen and (orientation: Landscape) and (max-height: 900px) {
@@ -59,7 +62,7 @@
 
     .logoutContainer {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         padding: fn.rem(10);
         gap: fn.rem(10);
         cursor: pointer;
