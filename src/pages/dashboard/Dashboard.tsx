@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom"
-import Navigation from "../../components/notification"
+import Navigation from "../../components/navigation"
 import SideBar from "../../components/sideBar"
 import styles from "./Dashboard.module.scss"
 

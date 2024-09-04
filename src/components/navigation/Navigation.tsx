@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { renderHeader } from "./constant";
-import userIcon from "../../../public/assets/user-icon.svg"
-
+import { userIcon } from "../../../public/assets";
 import styles from "./Navigation.module.scss"
 
 

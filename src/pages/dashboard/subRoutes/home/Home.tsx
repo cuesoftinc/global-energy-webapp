@@ -1,12 +1,12 @@
-
+import styles from "./Home.module.scss"
 
 
 const Home = () => {
-    return (
-        <div>
+    return(
+        <main className={styles.main}>
             Home
-        </div>
+        </main>
     )
 }
 
-export default Home;
+export default Home

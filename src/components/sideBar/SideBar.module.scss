@@ -5,8 +5,8 @@
   position: sticky;
   height: 100%;
   background-color: $secondary-color;
-  padding-left: fn.rem(40);
-  padding-block: fn.rem(34);
+  padding-left: fn.rem(30);
+  padding-block: fn.rem(30);
   display: flex;
   flex-direction: column;
 
@@ -14,6 +14,8 @@
     display: flex;
     justify-content: flex-start;
     color: $white;
+    padding-left: fn.rem(10);
+
     .logo {
       margin-bottom: fn.rem(50);
     }
@@ -28,19 +30,20 @@
     overflow-y: scroll;
 
     @media screen and (orientation: Landscape) and (max-height: 900px) {
-        gap: fn.rem(28);
+      gap: fn.rem(28);
     }
 
     @media screen and (orientation: portrait) and (max-height: 1290px) {
-        gap: fn.rem(28);
+      gap: fn.rem(28);
     }
 
     .navContainer {
       display: flex;
       flex-direction: column;
-      gap: fn.rem(24);
+      gap: fn.rem(14);
       align-items: flex-start;
       justify-content: center;
+      // background-color: green;
 
       .nav {
         width: 100%;
@@ -49,6 +52,14 @@
         align-items: center;
         gap: fn.rem(10);
         font-size: fn.rem(14);
+
+        &:hover {
+          background: linear-gradient(
+            271.32deg,
+            rgba(255, 255, 255, 0) -12.13%,
+            rgba(255, 255, 255, 0.4) 118.03%
+          );
+        }
       }
 
       .active {
@@ -58,19 +69,45 @@
           rgba(255, 255, 255, 0.4) 118.03%
         );
       }
+
+      .iconUp {
+        transform: rotate(180deg);
+      }
+
+      .iconDown {
+        transform: rotate(0deg);
+      }
+
+      .subItems {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .subItem {
+        padding: 8px 0;
+        padding-left: 45px;
+        color: #333;
+
+        &:hover {
+          color: #000;
+        }
+      }
+      .subActive {
+        color: green;
+      }
     }
 
     .logoutContainer {
-        display: flex;
-        align-items: flex-end;
-        padding: fn.rem(10);
-        gap: fn.rem(10);
-        cursor: pointer;
-        margin-top: 4rem;
+      display: flex;
+      align-items: flex-end;
+      padding: fn.rem(10);
+      gap: fn.rem(10);
+      cursor: pointer;
+      margin-top: 4rem;
 
-        .logoutText {
-            font-size: fn.rem(16);
-        }
+      .logoutText {
+        font-size: fn.rem(16);
+      }
     }
   }
 }
