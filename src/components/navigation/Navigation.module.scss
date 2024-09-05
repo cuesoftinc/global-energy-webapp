@@ -1,0 +1,21 @@
+@use "../../scss/global//colors" as *;
+@use "../../scss/utils/functions" as fn;
+
+.main {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  background-color: $secondary-color;
+  z-index: 10;
+
+  .path {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: fn.rem(24);
+    column-gap: fn.rem(10);
+  }
+}
