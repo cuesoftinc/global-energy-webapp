@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import Input from "../../../components/input/Input"
 import styles from "./ForgotPassword.module.scss"
 import { postRequest } from "../../../utils/apiClient";
