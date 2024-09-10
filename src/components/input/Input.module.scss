@@ -1,0 +1,59 @@
+@use "../../scss/global/colors" as *;
+@use "../../scss/utils/functions" as fn;
+
+main {
+  .inputDiv {
+    display: flex;
+    flex-direction: column;
+    gap: fn.rem(8);
+    width: 100%;
+  }
+
+  .label {
+    font-size: fn.rem(18);
+    color: #8a8a8a;
+    font-weight: 500;
+  }
+
+  .inputContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  .input {
+    width: 100%;
+    color: $text;
+    font-size: fn.rem(20);
+    background-color: $dim-white;
+    padding: fn.rem(12);
+    border-radius: fn.rem(6);
+    border: 1px solid $border;
+  }
+
+  .input::placeholder {
+    color: #cbcbcb;
+    font-size: fn.rem(18);
+  }
+
+  .input:focus {
+    border: 1px solid $text;
+  }
+
+  .button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .icon {
+    position: absolute;
+    right: 0;
+    margin-right: fn.rem(16);
+  }
+}

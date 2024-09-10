@@ -1,0 +1,31 @@
+@use "../../scss/global/colors" as *;
+@use "../../scss/utils/functions" as fn;
+@use "../../scss/utils/fonts" as *;
+
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-shadow: 2px -2px 6px 0px #0b805680 inset;
+  box-shadow: -2px 2px 6px 0px #f2f2f280 inset;
+  padding: fn.rem(16);
+  border-radius: fn.rem(6);
+  background: $blue;
+  color: $white;
+  font-weight: 700;
+  font-family: $base-font;
+  font-size: fn.rem(17);
+  line-height: fn.rem(20);
+  letter-spacing: 0em;
+  cursor: pointer;
+  .loading {
+    width: fn.rem(23);
+    height: fn.rem(23);
+  }
+}
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
