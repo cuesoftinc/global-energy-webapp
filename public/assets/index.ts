@@ -12,6 +12,8 @@ import closeIcon from "./icons/loadingSpinner.svg"
 import dropDown from "./icons/arrow-down.svg"
 import Logo from "./logo.svg"
 import menuIcon from "./icons/menu-icon.svg"
+import ball from "./icons/Ball.svg"
+import envelope from "./icons/envelope.svg"
 
 export {
     homeIcon,
@@ -28,4 +30,6 @@ export {
     dropDown,
     Logo,
     menuIcon,
+    ball,
+    envelope
 }

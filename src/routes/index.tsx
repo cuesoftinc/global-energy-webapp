@@ -39,6 +39,10 @@ const Routes = () => {
             path: "/dashboard/contact",
             element: <Contact />,
         },
+        {
+            path: "/dashboard/contact",
+            element: <Contact />,
+        },
     ]
     return { dashboardSubRoutes }
 }

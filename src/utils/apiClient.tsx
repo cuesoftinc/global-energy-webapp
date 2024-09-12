@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-const accessToken = Cookies.get("");
-const refreshToken = Cookies.get("");
+const accessToken = Cookies.get("gblATK");
+const refreshToken = Cookies.get("glbRTK");
 
 const confiG = {
 	headers: {
@@ -19,20 +19,19 @@ const getRequest = async (url: string) => {
 	}
 };
 
-const getAuthRequest = async (url: string, accessToken: string, refreshToken: string) => {
+const getAuthRequest = async (url: string) => {
 	const AuthConfig = {
 		headers: {
-			"Content-Type": "application/json",
-			token: accessToken,
-			refreshtoken: refreshToken,
+			"Authorization": `Bearer ${accessToken}`,
+            "Content-Type": "application/json"
 		},
-		credentials: "same-origin",
 	};
 	try {
 		const response = await axios.get(url, AuthConfig);
 		return response.data;
 	} catch (error) {
-		return error;
+		console.error('Error fetching data:', error);
+		throw error;
 	}
 };
 
@@ -66,6 +65,25 @@ const postAuthRequest = async (
 		return error;
 	}
 };
+
+const FormDataPostRequest = async (
+	url: string,
+	data: FormData,
+
+) => {
+	const AuthConfig = {
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+			"Content-Type": "multipart/form-data",
+		},
+	};
+	try {
+		const response = await axios.post(url, data, AuthConfig);
+		return response.data;
+	} catch (error) {
+		return error;
+	}
+}
 
 const putAuthRequest = async (
 	url: string,
@@ -106,4 +124,5 @@ const deleteAuthRequest = async (
 	}
 };
 
-export { getRequest, getAuthRequest, postRequest, postAuthRequest, putAuthRequest, deleteAuthRequest };
+
+export { getRequest, getAuthRequest, postRequest, postAuthRequest, FormDataPostRequest, putAuthRequest, deleteAuthRequest };

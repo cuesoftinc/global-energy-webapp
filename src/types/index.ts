@@ -8,3 +8,14 @@ export type TokenType = {
     exp: number,
     publicKey: string;
 }
+
+export interface blogPost {
+    id: string,
+    title: string,
+    content: string,
+    imgUrl: string,
+    userId: string
+    comments: [],
+    createdAt: string,
+    updatedAt: string,
+}

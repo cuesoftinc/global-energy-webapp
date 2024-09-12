@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./LoadingScreen.module.scss";
-import { loadingBall } from "../../../public/assets";
+import { ball, loadingBall } from "../../../public/assets";
 
 interface PROPS {
 	overlay: boolean;
@@ -13,7 +13,7 @@ const LoadingScreen: React.FC<PROPS> = ({ overlay, overlayText, style }) => {
 
 	return (
 		<main className={styles.main} style={style}>
-			<img src={loadingBall} alt="ball" className={styles.loadingBall} />
+			<img src={ball} alt="ball" className={styles.loadingBall} />
 			<p className={styles.overlayText}>{overlayText}</p>
 		</main>
 	);

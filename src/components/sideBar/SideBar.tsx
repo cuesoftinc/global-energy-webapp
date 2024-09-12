@@ -1,8 +1,12 @@
 import { useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import styles from "./SideBar.module.scss"
 import { links } from "./constant"
 import { Logo, logoutIcon } from "../../../public/assets"
+import Cookies from "js-cookie"
+import toast from "react-hot-toast"
+import { postRequest } from "../../utils/apiClient"
+import { useMutation } from "react-query"
 
 interface SideBarProps {
     toggleMenu: boolean;
@@ -10,12 +14,47 @@ interface SideBarProps {
 }
 
 const SideBar: React.FC<SideBarProps> = ({ toggleMenu }) => {
+    const nav = useNavigate()
     const location = useLocation();
     const [toggleCaret, setToggleCaret] = useState<number | null>(null)
 
 
     const handleToggle = (id: number) => {
         setToggleCaret(toggleCaret === id ? null : id);
+    }
+
+    const logoutAPI = async (refreshToken: string) => {
+        const base = import.meta.env.VITE_BASE_URL;
+        const url = `${base}/auth/logout`;
+        const response = await postRequest(url, { refreshToken });
+        return response;
+    }
+
+    const { mutate: logout } = useMutation(logoutAPI, {
+        onSuccess: (data) => {
+            if (data?.message) {
+                toast.success(data.message)
+                Cookies.remove("glbATK")
+                Cookies.remove("glbRTK")
+                nav("/")
+                window.location.reload()
+            }
+        },
+        onError: (error: any) => {
+            const errorMessage = error?.response?.data?.message || "Logout failed, Please try again"
+            toast.error(errorMessage)
+        }
+    })
+
+    const handleLogout = () => {
+        const refreshToken = Cookies.get("glbRTK")
+        if (refreshToken) {
+            toast.loading("Logging out...")
+            logout(refreshToken)
+        } else {
+            toast.error("No refresh token found.")
+            nav("/")
+        }
     }
 
     return (
@@ -71,7 +110,7 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu }) => {
                                 </div>
                             ))}
                         </section>
-                        <section className={styles.logoutContainer}>
+                        <section onClick={handleLogout} className={styles.logoutContainer}>
                             <img src={logoutIcon} alt="logout" className={styles.logout} />
                             <p className={styles.logoutText}>Logout</p>
                         </section>
