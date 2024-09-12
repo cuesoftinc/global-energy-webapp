@@ -1,0 +1,31 @@
+.main {
+	position: fixed;
+	width: 50%;
+	inset: 0;
+	background: #01262662;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 100;
+
+	.loadingBall {
+		animation: bounce 1s infinite;
+		width: 60px;
+		height: 60px;
+	}
+	.overlayText {
+		font-size: 20px;
+		font-weight: 600;
+		color: #ffffff;
+	}
+	@keyframes bounce {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(10px);
+		}
+	}
+}

@@ -6,6 +6,12 @@ import bellIcon from "./icons/bell-icon.svg"
 import manageIcon from "./icons/manage-icon.svg"
 import logoutIcon from "./icons/logout-icon.svg"
 import caretDownIcon from "./icons/caret-down-icon.svg"
+import loadingBall from "./icons/loader-ball.svg"
+import loadingSpinner from "./icons/loadingSpinner.svg"
+import closeIcon from "./icons/loadingSpinner.svg"
+import dropDown from "./icons/arrow-down.svg"
+import Logo from "./logo.svg"
+import menuIcon from "./icons/menu-icon.svg"
 
 export {
     homeIcon,
@@ -16,4 +22,10 @@ export {
     manageIcon,
     logoutIcon,
     caretDownIcon,
+    loadingBall,
+    loadingSpinner,
+    closeIcon,
+    dropDown,
+    Logo,
+    menuIcon,
 }

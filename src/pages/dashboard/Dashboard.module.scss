@@ -1,7 +1,13 @@
 @use "../../scss//global/colors" as *;
 @use "../../scss/utils/functions" as fn;
 
+.hideMenu {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
 .main {
+  width: 100%;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 300px auto;
@@ -14,9 +20,12 @@
   }
 
   .outletContainer {
+    width: 100%;
     .outlet {
       min-height: calc(100vh - 82px);
       padding: 24px 32px;
     }
   }
 }
+
+
