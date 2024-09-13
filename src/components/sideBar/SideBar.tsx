@@ -84,7 +84,7 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu }) => {
                                             }
                                         }}
                                     >
-                                        <img src={item.icon} alt="icon" />
+                                        <img className={styles.icon} src={item.icon} alt="icon" />
                                         <p>{item.label}</p>
                                         {item.icn && (
                                             <img

@@ -6,7 +6,7 @@ interface PROPS {
 }
 
 const Verify: React.FC<PROPS> = ({ setActive }) => {
-    setActive("verify")
+    setActive("")
     return (
         <div className={styles.header}>
             <div className={styles.envelopeDiv}>

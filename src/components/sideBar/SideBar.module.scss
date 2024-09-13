@@ -62,19 +62,21 @@
         align-items: center;
         gap: fn.rem(10);
         font-size: fn.rem(14);
-        color: white;
-
+        color: #ababab;
+        
         &:hover {
           background: linear-gradient(
             271.32deg,
             rgba(255, 255, 255, 0) -12.13%,
             rgba(255, 255, 255, 0.4) 118.03%
           );
+          color: white;
+          filter: brightness(0) invert(1);
         }
       }
 
       .itemDiv {
-        width: 100%
+        width: 100%;
       }
 
       .active {
@@ -83,6 +85,8 @@
           rgba(255, 255, 255, 0) -118.03%,
           rgba(255, 255, 255, 0.4) 118.03%
         );
+        filter: brightness(0) invert(1);
+        color: white;
       }
 
       .iconUp {
@@ -101,14 +105,14 @@
       .subItem {
         padding: 8px 0;
         padding-left: 45px;
-        color: #333;
+        color: #ababab;
 
         &:hover {
-          color: #000;
+          color: white
         }
       }
       .subActive {
-        color: green;
+        color: white;
       }
     }
 
@@ -122,6 +126,11 @@
 
       .logoutText {
         font-size: fn.rem(16);
+        color: #ababab;
+
+        &:hover {
+          color: white;
+        }
       }
     }
   }

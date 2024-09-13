@@ -33,7 +33,9 @@
     }
 
     .select {
-        border-radius: 6px;
+      border-radius: 6px;
+      background-color: $dim-white;
+      border: 1px solid $border;
     }
   }
 }

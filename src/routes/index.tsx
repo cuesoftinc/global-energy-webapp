@@ -1,6 +1,7 @@
 import Contact from "../pages/dashboard/subRoutes/contact";
 import FAQ from "../pages/dashboard/subRoutes/faq";
 import Home from "../pages/dashboard/subRoutes/home";
+import ViewPost from "../pages/dashboard/subRoutes/home/ViewPost";
 import PostContent from "../pages/dashboard/subRoutes/post-content";
 import Create from "../pages/dashboard/subRoutes/power-management";
 import Profile from "../pages/dashboard/subRoutes/profile";
@@ -14,6 +15,10 @@ const Routes = () => {
         {
             path: "/dashboard",
             element: <Home />,
+        },
+        {
+            path: "/dashboard/view-post",
+            element: <ViewPost />,
         },
         {
             path: "/dashboard/members-post",

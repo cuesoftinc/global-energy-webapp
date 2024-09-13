@@ -8,14 +8,24 @@
 }
 
 .blogContainer {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    column-gap: 12px;
-    row-gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  column-gap: 12px;
+  row-gap: 24px;
+  justify-content: space-between;
+  @media screen and (max-width: 920px) {
+    grid-template-columns: repeat(2, auto);
+  }
+  @media screen and (max-width: 414px) {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+  }
 }
 
 .blogDiv {
-  width: 300px;
+  width: 290px;
   border-radius: 10px;
   background-color: #f9f9f9;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -60,13 +70,23 @@
   .title {
     font-size: 16px;
     font-weight: 600;
-    color: #333333;
+    color: #484848;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .subtitle {
     font-size: 14px;
     font-weight: 600;
     color: $secondary-color-dark;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -87,7 +107,11 @@
 }
 
 .linkDiv {
-  padding: 0 0 12px 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 12px 12px 12px;
   .btn {
     background-color: none;
     color: $blue;
@@ -97,30 +121,39 @@
   }
 }
 
+.iconDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  column-gap: 14px;
+  cursor: pointer;
+  width: 50%;
+}
+
 .inputContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
-  .input {
-    width: 100%;
-    color: $text;
-    font-size: fn.rem(20);
-    background-color: $dim-white;
-    padding: fn.rem(12);
-    border-radius: fn.rem(6);
-    border: 1px solid $border;
-  }
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.input {
+  width: 100%;
+  color: $text;
+  font-size: fn.rem(20);
+  background-color: $dim-white;
+  padding: fn.rem(12);
+  border-radius: fn.rem(6);
+  border: 1px solid $border;
+}
 
-  .input::placeholder {
-    color: #cbcbcb;
-    font-size: fn.rem(18);
-  }
+.input::placeholder {
+  color: #cbcbcb;
+  font-size: fn.rem(18);
+}
 
-  .input:focus {
-    border: 1px solid $text;
-  }
+.input:focus {
+  border: 1px solid $text;
+}

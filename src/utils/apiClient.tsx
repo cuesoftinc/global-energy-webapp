@@ -111,8 +111,7 @@ const deleteAuthRequest = async (
 	const authConfig = {
 		headers: {
 			"Content-Type": "application/json",
-			token: accessToken,
-			refreshtoken: refreshToken,
+			Authorization: `Bearer ${accessToken}`,
 		},
 		credentials: "same-origin",
 	};

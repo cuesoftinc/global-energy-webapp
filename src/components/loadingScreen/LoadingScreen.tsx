@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./LoadingScreen.module.scss";
-import { ball, loadingBall } from "../../../public/assets";
+import { ball } from "../../../public/assets";
 
 interface PROPS {
 	overlay: boolean;

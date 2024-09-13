@@ -14,6 +14,8 @@ import Logo from "./logo.svg"
 import menuIcon from "./icons/menu-icon.svg"
 import ball from "./icons/Ball.svg"
 import envelope from "./icons/envelope.svg"
+import trash from "./icons/trash.svg"
+import edit from "./icons/edit.svg"
 
 export {
     homeIcon,
@@ -31,5 +33,7 @@ export {
     Logo,
     menuIcon,
     ball,
-    envelope
+    envelope,
+    trash,
+    edit
 }

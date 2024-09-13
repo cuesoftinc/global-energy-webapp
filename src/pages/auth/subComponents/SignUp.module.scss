@@ -19,6 +19,9 @@
       @media screen and (min-width: 1500px) {
         font-size: fn.rem(40);
       }
+      @media screen and (max-width: 414px) {
+        font-size: fn.rem(32);
+      }
     }
     .subtitle {
       font-size: fn.rem(20);
@@ -28,6 +31,7 @@
     @media screen and (min-width: 1500px) {
       max-width: fn.rem(800);
     }
+    
   }
   .formContent {
     display: flex;
@@ -47,6 +51,9 @@
       gap: fn.rem(10);
       .checkboxText {
         font-size: 18px;
+        @media screen and (max-width: 414px) {
+          font-size: fn.rem(14);
+        }
 
         .span {
           font-weight: 600;
