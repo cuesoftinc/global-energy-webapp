@@ -19,7 +19,7 @@ const ConfirmEmail = () => {
 
     const emailConfirm = async (token: string) => {
         const base = import.meta.env.VITE_BASE_URL;
-        const url = `${base}/api/v2/auth/confirm-email`
+        const url = `${base}/auth/confirm-email`
         const response = await postRequest(url, {
             confirmationToken: token
         })
@@ -28,11 +28,9 @@ const ConfirmEmail = () => {
 
     const { mutate } = useMutation(emailConfirm, {
         onSuccess: (data) => {
-            if (data.response.status === 200) {
+            if (data.message) {
                 toast.success("Email confirmed successfully!")
-                setTimeout(() => {
-                    navigate("/")
-                }, 1500)
+                navigate("/")
             }
         },
         onError: (error: any) => {

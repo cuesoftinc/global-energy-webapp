@@ -58,9 +58,8 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                 toast.success(data.message, { duration: 5000 });
                 setOverlay(false);
                 setOverlayText("");
-                setTimeout(() => {
-                    setActive("verify");
-                }, 1500);
+                console.log("Setting active to 'verify'");
+                setActive("verify");
             }
         },
         onError: (error: any) => {
@@ -73,7 +72,7 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                 });
             } else {
                 // Generic error message
-                toast.error(error?.response?.data?.message || "An error occurred");
+                toast.error(error?.response?.data?.message || "An error occurred", { duration: 5000 });
             }
         }
     });

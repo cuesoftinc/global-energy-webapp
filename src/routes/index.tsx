@@ -17,11 +17,15 @@ const Routes = () => {
             element: <Home />,
         },
         {
-            path: "/dashboard/view-post",
+            path: "/dashboard/view-post/:id",
             element: <ViewPost />,
         },
         {
             path: "/dashboard/members-post",
+            element: <PostContent />,
+        },
+        {
+            path: "/dashboard/members-post/:id",
             element: <PostContent />,
         },
         {

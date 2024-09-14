@@ -1,12 +1,9 @@
 import { envelope } from "../../../../public/assets";
 import styles from "./Verify.module.scss"
 
-interface PROPS {
-    setActive: (value: React.SetStateAction<string>) => void;
-}
 
-const Verify: React.FC<PROPS> = ({ setActive }) => {
-    setActive("")
+const Verify = () => {
+
     return (
         <div className={styles.header}>
             <div className={styles.envelopeDiv}>

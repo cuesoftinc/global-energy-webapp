@@ -18,14 +18,16 @@ const useValidateToken = () => {
     }
   }, []);
 
-  //validate the token by checking it's exp and other keys
+  // Validate the token by checking its expiration
   const validateToken = useMemo(() => {
     const token = getToken as TokenType;
-    return token?.exp && token?.publicKey && token?.exp > Date.now() / 1000;
+    const currentTime = Date.now() / 1000; // Current time in seconds
+    return token?.exp > currentTime; // Validate expiration
   }, [getToken]);
   return {
     validateToken,
   };
+
 };
 
 export default useValidateToken;

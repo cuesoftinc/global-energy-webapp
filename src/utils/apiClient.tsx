@@ -1,11 +1,12 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 const accessToken = Cookies.get("gblATK");
-const refreshToken = Cookies.get("glbRTK");
+
 
 const confiG = {
 	headers: {
 		"Content-Type": "application/json",
+		"Authorization": `Bearer ${accessToken}`,
 	},
 	credentials: "same-origin",
 };
@@ -23,7 +24,7 @@ const getAuthRequest = async (url: string) => {
 	const AuthConfig = {
 		headers: {
 			"Authorization": `Bearer ${accessToken}`,
-            "Content-Type": "application/json"
+			"Content-Type": "application/json"
 		},
 	};
 	try {
@@ -47,14 +48,11 @@ const postRequest = async (url: string, data: object) => {
 const postAuthRequest = async (
 	url: string,
 	data: object,
-	accessToken: string,
-	refreshToken: string
 ) => {
 	const AuthConfig = {
 		headers: {
 			"Content-Type": "application/json",
-			token: accessToken,
-			refreshtoken: refreshToken,
+			"Authorization": `Bearer ${accessToken}`,
 		},
 		credentials: "same-origin",
 	};
@@ -65,6 +63,23 @@ const postAuthRequest = async (
 		return error;
 	}
 };
+
+const refreshPostRequest = async (url: string, data: object) => {
+	const AuthConfig = {
+		headers: {
+			"Content-Type": "application/json",
+		},
+	};
+
+	try {
+		const response = await axios.post(url, data, AuthConfig)
+		return response.data
+	} catch (error) {
+		console.error("API request failed:", error)
+		throw error; // Rethrow the error to be handled by the calling code
+	}
+};
+
 
 const FormDataPostRequest = async (
 	url: string,
@@ -85,20 +100,18 @@ const FormDataPostRequest = async (
 	}
 }
 
-const putAuthRequest = async (
+const patchAuthRequest = async (
 	url: string,
 	data: object,
 ) => {
 	const authConfig = {
 		headers: {
 			"Content-Type": "application/json",
-			token: accessToken,
-			refreshtoken: refreshToken,
+			Authorization: `Bearer ${accessToken}`,
 		},
-		credentials: "same-origin",
 	};
 	try {
-		const response = await axios.put(url, data, authConfig);
+		const response = await axios.patch(url, data, authConfig);
 		return response.data;
 	} catch (error) {
 		return error;
@@ -124,4 +137,4 @@ const deleteAuthRequest = async (
 };
 
 
-export { getRequest, getAuthRequest, postRequest, postAuthRequest, FormDataPostRequest, putAuthRequest, deleteAuthRequest };
+export { getRequest, getAuthRequest, postRequest, postAuthRequest, FormDataPostRequest, patchAuthRequest, deleteAuthRequest, refreshPostRequest };

@@ -78,7 +78,6 @@ const Login: React.FC<PROPS> = ({ setActive, setOverlay, setOverlayText }) => {
     const handleLogin = useCallback(
         (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault()
-
             mutate()
         },
         [mutate]

@@ -5,38 +5,40 @@ import toast from "react-hot-toast";
 import styles from "./ResetPassword.module.scss"
 import Input from "../../../components/input/Input";
 import Button from "../../../components/button/Button";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 interface PROPS {
-    setActive: (value: React.SetStateAction<string>) => void;
-    setOverlayText: (value: React.SetStateAction<string>) => void;
-    setOverlay: (value: React.SetStateAction<boolean>) => void;
+    setActive: (value: string) => void;
+    setOverlay: (value: boolean) => void;
+    setOverlayText: (value: string) => void;
 }
 
-const useQuery = () => {
-    return new URLSearchParams(useLocation().search);
-};
 
 const initialState = {
     newPassword: "",
     confirmPassword: "",
 };
 
-const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
-    const query = useQuery();
-    const resetToken = query.get("token");
-
+const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText }) => {
     const [userData, setUserData] = useState(initialState)
     const [disabled, setDisabled] = useState(true)
 
-    const resetPassword = async () => {
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const extractToken = useCallback(() => {
+        const token = location.pathname.split("/").pop()
+        return token
+    }, [location])
+
+    const resetPassword = async (token: string) => {
         setOverlay(true)
         setOverlayText("Resetting your password...")
         const base = import.meta.env.VITE_BASE_URL
         const url = `${base}/auth/reset-password`
         const response = await postRequest(url, {
-            resetToken,
+            resetToken: token,
             password: userData.newPassword.trim(),
             confirmPassword: userData.confirmPassword.trim(),
         })
@@ -49,7 +51,9 @@ const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive 
                 toast.success(data.message)
                 setOverlay(false)
                 setOverlayText("")
-                setActive("login");
+                setTimeout(() => {
+                    navigate("/")
+                }, 1500)
             }
         },
         onError: (error: any) => {
@@ -63,9 +67,12 @@ const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive 
     const handleSubmit = useCallback(
         (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault()
-            mutate()
+            const token = extractToken();
+            if (token) {
+                mutate(token);
+            }
         },
-        [mutate]
+        [mutate, extractToken]
     )
 
     const handleDisableButton = useCallback(() => {
@@ -94,7 +101,7 @@ const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive 
                     onChange={(e) => {
                         setUserData((prev) => ({
                             ...prev,
-                            password: e.target.value,
+                            newPassword: e.target.value,
                         }));
                     }}
                 />
@@ -124,7 +131,7 @@ const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive 
                     </Button>
                     <p className={styles.signupLink}>
                         Go back to
-                        <span onClick={() => setActive("login")} className={styles.span}>
+                        <span onClick={() => navigate("/")} className={styles.span}>
                             {" "}
                             Login
                         </span>
