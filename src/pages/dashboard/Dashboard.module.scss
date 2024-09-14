@@ -5,18 +5,34 @@
   width: 100%;
   min-height: 100vh;
   background-color: #f8f8f8;
+
+  .NewContainer {
+    .Newoutlet {
+      margin: 24px;
+    }
+  }
 }
+
+.hide {
+  margin: 24px;
+}
+
 .main {
   width: 100%;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 300px auto;
-  background-color: #f8f8f8;
+  background-color: $background;
 
   .sidebar {
     position: sticky;
     top: 0;
     height: 100vh;
+    // @media screen and (max-width: 414px) {
+    //   position: absolute;
+    //   left: 0;
+    //   right: 0;
+    // }
   }
 
   .outletContainer {
@@ -27,5 +43,3 @@
     }
   }
 }
-
-

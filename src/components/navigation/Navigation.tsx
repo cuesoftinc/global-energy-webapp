@@ -14,8 +14,8 @@ const Navigation: React.FC<NavigationProps> = ({ handleMenuToggle, toggleMenu })
 
 
     return (
-        <main className={styles.main}>
-            <div className={styles.newPath}>
+        <main className={toggleMenu ? styles.main : styles.Newmain}>
+            <div className={toggleMenu ? styles.path : styles.Newpath}>
                 {!toggleMenu && (
                     <Link to="#" className={styles.logoContainer}>
                         <p className={styles.logo}>
@@ -23,12 +23,12 @@ const Navigation: React.FC<NavigationProps> = ({ handleMenuToggle, toggleMenu })
                         </p>
                     </Link>
                 )}
-                <div className={styles.menu}>
+                <div className={toggleMenu ? styles.menu : styles.Newmenu }>
                     <img onClick={handleMenuToggle} src={menuIcon} alt="menu icon" />
                     {renderHeader(splitPath)}
                 </div>
             </div>
-            <div>
+            <div className={styles.profile}>
                 <img src={userIcon} alt="profile icon" />
             </div>
         </main>

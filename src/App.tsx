@@ -5,15 +5,33 @@ import Auth from "../src/pages/auth/Auth"
 import Dashboard from "./pages/dashboard/Dashboard"
 import { toastOptions } from "./utils/toastOptions"
 import { QueryClient, QueryClientProvider } from "react-query"
+import ConfirmEmail from "./pages/auth/subComponents/ConfirmEmail"
+import ResetPassword from "./pages/auth/subComponents/ResetPassword"
+import useTokenRefresh from "./hook/useTokenRefresh"
 const queryClient = new QueryClient()
-
 
 const { dashboardSubRoutes } = Routes()
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Auth />
+    element: <Auth />,
+  },
+  {
+    path: "/auth/confirm-email/:token",
+    element: <ConfirmEmail />,
+  },
+  {
+    path: "/auth/reset-password/:token",
+    element: (
+      <Auth>
+        <ResetPassword
+          setActive={(value) => console.log(value)}
+          setOverlay={(value) => console.log(value)}
+          setOverlayText={(value) => console.log(value)}
+        />
+      </Auth>
+    ),
   },
   {
     path: "/dashboard",
@@ -22,10 +40,15 @@ const router = createBrowserRouter([
   }
 ])
 
+function TokenRefresher() {
+  useTokenRefresh();
+  return null;
+}
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <TokenRefresher />
       <Toaster toastOptions={toastOptions} position="top-center" reverseOrder={false} />
       <RouterProvider router={router} />
     </QueryClientProvider>

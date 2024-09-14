@@ -13,6 +13,7 @@ interface PROPS {
     showFilter?: boolean;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    autocomplete?: string
 }
 
 const Input: React.FC<PROPS> = ({
@@ -26,6 +27,7 @@ const Input: React.FC<PROPS> = ({
     img,
     onChange,
     onClick,
+    autocomplete
 }) => {
     return (
         <main>
@@ -41,6 +43,7 @@ const Input: React.FC<PROPS> = ({
                         placeholder={placeholder}
                         onChange={onChange}
                         className={`${styles.input} ${className}`}
+                        autoComplete={autocomplete}
                     />
                     {alt && (
                         <button className={styles.button} onClick={onClick}><img src={img} alt="icon" className={styles.icon} /></button>

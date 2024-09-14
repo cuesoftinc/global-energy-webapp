@@ -1,11 +1,11 @@
 @use "../../scss/global/colors" as *;
 @use "../../scss/utils/functions" as fn;
 
-
 .main {
   overflow: hidden;
   display: flex;
   align-items: center;
+  padding: 1rem 0;
 
   .left {
     position: relative;
@@ -16,6 +16,9 @@
     padding-inline: fn.rem(38);
     @media screen and (min-width: 1500px) {
       padding-inline: fn.rem(50);
+    }
+    @media screen and (max-width: 920px) {
+      width: 100%;
     }
   }
 
@@ -77,6 +80,9 @@
           }
         }
       }
+    }
+    @media screen and (max-width: 920px) {
+      display: none;
     }
   }
 }

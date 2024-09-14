@@ -3,6 +3,9 @@ export const renderHeader = (splitPath: Array<string>) => {
         case splitPath[splitPath.length - 1] === "dashboard":
             return "Dashboard";
             break;
+        case splitPath[splitPath.length - 1] === "view-post":
+            return "Post";
+            break;
         case splitPath[splitPath.length - 1] === "members-post":
             return "Post Content"
             break;

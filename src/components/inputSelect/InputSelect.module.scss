@@ -1,0 +1,45 @@
+@use "../../scss/global/colors" as *;
+@use "../../scss/utils/functions" as fn;
+
+.inputDiv {
+    display: flex;
+    flex-direction: column;
+    gap: fn.rem(8);
+    width: 100%;
+  }
+
+  .label {
+    font-size: fn.rem(18);
+    color: #8a8a8a;
+    font-weight: 500;
+    @media screen and (max-width: 414px) {
+      font-size: fn.rem(14);
+    }
+  }
+
+  .selectInput {
+    width: 100%;
+    color: $text;
+    font-size: fn.rem(18);
+    background-color: $dim-white;
+    padding: fn.rem(12);
+    border-radius: fn.rem(6);
+    border: 1px solid $border;
+    @media screen and (max-width: 414px) {
+      font-size: fn.rem(14);
+    }
+
+    &:focus {
+      border: 1px solid $text;
+      outline: none; // Keeps the custom border even on focus
+    }
+
+    &:active {
+      border: 1px solid $text; // Ensures the selected state doesn't revert to blue
+    }
+
+    &:focus-visible {
+      border-color: $text; // Ensures the border stays gray when focused via keyboard
+      outline: none;
+    }
+  }

@@ -1,10 +1,22 @@
 export type TokenType = {
-    email: string,
-    first_name: string,
-    last_name: string,
-    role: string,
-    user_id: string
-    user_type: string,
+    id: string,
+    iat: number,
     exp: number,
-    publicKey: string;
+    aud: string,
+    iss: string,
+    sub: string
 }
+
+export interface BlogPost {
+    comments: [],
+    content: string,
+    createdAt: string,
+    imgUrl: string,
+    subTitle: string,
+    title: string,
+    updatedAt: string,
+    userId: string
+    __v: number,
+    _id: string,
+}
+

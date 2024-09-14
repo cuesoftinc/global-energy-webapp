@@ -55,26 +55,24 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
     const { mutate, isLoading } = useMutation(registerUser, {
         onSuccess: (data) => {
             if (data?.message) {
-                toast.success(data.message);
-                // localStorage.setItem("_uid", data?.userId);
+                toast.success(data.message, { duration: 5000 });
                 setOverlay(false);
                 setOverlayText("");
-                setTimeout(() => {
-                    setActive("verify");
-                }, 1500);
+                console.log("Setting active to 'verify'");
+                setActive("verify");
             }
         },
         onError: (error: any) => {
             setOverlay(false)
             setOverlayText("")
-            toast.error(error?.response?.data?.message)
+            toast.error(error?.response?.data?.message, { duration: 5000 })
             if (error?.response?.data?.errors) {
                 error.response.data.errors.forEach((err: any) => {
                     toast.error(Object.values(err).join(" "));
                 });
             } else {
                 // Generic error message
-                toast.error(error?.response?.data?.message || "An error occurred");
+                toast.error(error?.response?.data?.message || "An error occurred", { duration: 5000 });
             }
         }
     });
@@ -108,9 +106,9 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
             userData.userName.length > 0 &&
             userData.password.length > 0 &&
             userData.confirmPassword.length > 0 && userData.checkbox &&
-            (userData.accountType === "Individual" ||
-                userData.accountType === "Family" ||
-                userData.accountType === "Corporate")
+            (userData.accountType === "individual" ||
+                userData.accountType === "family" ||
+                userData.accountType === "corporate")
             ? setDisabled(false)
             : setDisabled(true);
     }, [
@@ -195,7 +193,7 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                     onChange={(e) => {
                         setUserData((prev) => ({
                             ...prev,
-                            userName: e.target.value
+                            userName: e.target.value.toLowerCase()
                         }))
                     }}
                 />
@@ -234,14 +232,15 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                     <div className={styles.inputDiv}>
                         <label htmlFor="accountType" className={styles.label}>Account Type</label>
                         <select
+                            id="accountType"
                             value={userData.accountType}
                             onChange={(e) => setUserData({ ...userData, accountType: e.target.value })}
                             className={styles.selectInput}
                         >
                             <option value="">Select account type</option>
-                            <option value="Individual">Individual</option>
-                            <option value="Family">Family</option>
-                            <option value="Corporate">Corporate</option>
+                            <option value="individual">Individual</option>
+                            <option value="family">Family</option>
+                            <option value="corporate">Corporate</option>
                         </select>
 
                     </div>
@@ -255,6 +254,7 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                     placeholder="Enter password"
                     alt={false}
                     showFilter={false}
+                    autocomplete="new-password"
                     onChange={(e) => {
                         setUserData((prev) => ({
                             ...prev,
@@ -270,6 +270,7 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                     placeholder="Confirm password"
                     alt={false}
                     showFilter={false}
+                    autocomplete="new-password"
                     onChange={(e) => {
                         setUserData((prev) => ({
                             ...prev,
