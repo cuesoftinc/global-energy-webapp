@@ -112,6 +112,7 @@ const PostContent = () => {
             setSubTitle('')
             setContent('')
             setImage(null)
+            navigate("/dashboard")
         },
         onError: () => {
             toast.error("Error updating post")
