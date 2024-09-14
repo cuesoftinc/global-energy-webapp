@@ -1,7 +1,7 @@
 import styles from "./Home.module.scss"
 // import image1 from "../../../../../public/assets/image1.svg"
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import { BlogPost } from "../../../../types";
@@ -15,19 +15,24 @@ const Home = () => {
     const queryClient = useQueryClient();
     const nav = useNavigate()
 
-
     const getBlogPost = async () => {
         const response = await api.get("/post")
+        console.log("old",response.data)
         return response.data.data
     }
-    useQuery("getBlogPost", getBlogPost, {
+    const { refetch } = useQuery("getBlogPost", getBlogPost, {
         onSuccess: (data) => {
             setPosts(data);
+            console.log("New data:", data)
         },
         onError: () => {
             toast.error("error fetching data")
         }
     })
+    useEffect(() => {
+        queryClient.invalidateQueries("getBlogPost");
+        refetch();
+    }, [refetch, queryClient]);
 
     const deletePost = async (postId: string) => {
         await api.delete(`/post/${postId}`)
@@ -81,7 +86,7 @@ const Home = () => {
                                     </div>
                                     <div className={styles.titleContainer}>
                                         <p className={styles.title}>{post.title}</p>
-                                        <p className={styles.subtitle}>Sub Title of the post for more info about the title</p>
+                                        <p className={styles.subtitle}>{post.subTitle}</p>
                                     </div>
                                     <div className={styles.postContainer}>
                                         <p className={styles.postContent}>{post.content}</p>
@@ -110,100 +115,5 @@ const Home = () => {
     )
 }
 
-
-//     return (
-//         <main className={styles.main}>
-//             <div className={styles.inputContainer}>
-//                 <input
-//                     type="text"
-//                     placeholder="Search for posts..."
-//                     value={searchQuery}
-//                     onChange={(e) => setSearchQuery(e.target.value)}
-//                     className={styles.input}
-//                 />
-//             </div>
-//             <div className={styles.blogContainer}>
-//                 <div className={styles.blogDiv}>
-//                     <div>
-//                         <div className={styles.imageContainer}>
-//                             <img src={image1} alt="Blog Post Image" />
-//                         </div>
-//                         <div className={styles.contentDiv}>
-//                             <div className={styles.dateContainer}>
-//                                 <p className={styles.date}>12/09/2024</p>
-//                             </div>
-//                             <div className={styles.titleContainer}>
-//                                 <p className={styles.title}>Title of post</p>
-//                                 <p className={styles.subtitle}>Sub Title of the post for more info about the title</p>
-//                             </div>
-//                             <div className={styles.postContainer}>
-//                                 <p className={styles.postContent}>Post content goes here, a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content....</p>
-//                             </div>
-//                         </div>
-//                     </div>
-//                     <div className={styles.linkDiv}>
-//                         <Link to="/dashboard/view-post" className={styles.btn}>View Post</Link>
-//                         <div className={styles.iconDiv}>
-//                             <img src={trash} alt="trash icon" />
-//                             {/* <img src={edit} alt="edit icon" /> */}
-//                         </div>
-//                     </div>
-//                 </div>
-//                 <div className={styles.blogDiv}>
-//                     <div>
-//                         <div className={styles.imageContainer}>
-//                             <img src={image1} alt="Blog Post Image" />
-//                         </div>
-//                         <div className={styles.contentDiv}>
-//                             <div className={styles.dateContainer}>
-//                                 <p className={styles.date}>12/09/2024</p>
-//                             </div>
-//                             <div className={styles.titleContainer}>
-//                                 <p className={styles.title}>Title of post</p>
-//                                 <p className={styles.subtitle}>Sub Title of the post for more info about the title</p>
-//                             </div>
-//                             <div className={styles.postContainer}>
-//                                 <p className={styles.postContent}>Post content goes here, a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content....</p>
-//                             </div>
-//                         </div>
-//                     </div>
-//                     <div className={styles.linkDiv}>
-//                         <Link to="" className={styles.btn}>View Post</Link>
-//                         <div className={styles.iconDiv}>
-//                             <img src={trash} alt="trash icon" />
-//                             {/* <img src={edit} alt="edit icon" /> */}
-//                         </div>
-//                     </div>
-//                 </div>
-//                 <div className={styles.blogDiv}>
-//                     <div>
-//                         <div className={styles.imageContainer}>
-//                             <img src={image1} alt="Blog Post Image" />
-//                         </div>
-//                         <div className={styles.contentDiv}>
-//                             <div className={styles.dateContainer}>
-//                                 <p className={styles.date}>12/09/2024</p>
-//                             </div>
-//                             <div className={styles.titleContainer}>
-//                                 <p className={styles.title}>Title of post</p>
-//                                 <p className={styles.subtitle}>Sub Title of the post for more info about the title</p>
-//                             </div>
-//                             <div className={styles.postContainer}>
-//                                 <p className={styles.postContent}>Post content goes here, a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content....</p>
-//                             </div>
-//                         </div>
-//                     </div>
-//                     <div className={styles.linkDiv}>
-//                         <Link to="" className={styles.btn}>View Post</Link>
-//                         <div className={styles.iconDiv}>
-//                             <img src={trash} alt="trash icon" />
-//                             {/* <img src={edit} alt="edit icon" /> */}
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </main>
-//     )
-// }
 
 export default Home;

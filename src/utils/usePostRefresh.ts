@@ -18,7 +18,7 @@ const usePostRefreshToken = () => {
                 Cookies.set("glbATK", data.accessToken, { expires: 1 / 24 });
                 Cookies.set("glbRTK", data.refreshToken, { expires: 7 });
             } else {
-                console.error("Invalid response data:", data);
+                console.error("");
             }
         },
         onError: (error: any) => {

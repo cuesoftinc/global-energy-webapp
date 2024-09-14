@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Button from "../../../../components/button/Button"
 import Input from "../../../../components/input/Input"
 import styles from "./PostContent.module.scss"
 // import { FormDataPostRequest } from "../../../../utils/apiClient";
 import { useMutation, useQueryClient } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import api from "../../../../utils/interceptor";
 
@@ -13,7 +13,7 @@ interface updateProps {
     title?: string;
     subTitle?: string;
     content?: string;
-    imgUrl?: string | null | undefined
+    imgUrl?: string | File
 }
 
 const PostContent = () => {
@@ -22,8 +22,9 @@ const PostContent = () => {
     const [subTitle, setSubTitle] = useState('');
     const [content, setContent] = useState('');
     const [image, setImage] = useState<File | null>(null);
-    const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null);
     const queryClient = useQueryClient();
+    const [disabled, setDisabled] = useState(true)
+    const navigate = useNavigate()
 
 
     // Fetch the post data when in update mode
@@ -34,7 +35,6 @@ const PostContent = () => {
                 setTitle(response.data.title);
                 setContent(response.data.content);
                 setSubTitle(response.data.subTitle);
-                setExistingImageUrl(response.data.imgUrl || null);
                 setImage(null);
             };
             fetchPost();
@@ -42,11 +42,25 @@ const PostContent = () => {
     }, [id]);
 
     const updatePost = async ({ postId, title, subTitle, content, imgUrl }: updateProps) => {
-        const response = await api.patch(`/post/${postId}`, {
-            title, subTitle, content, imgUrl
+        const formData = new FormData()
+        formData.append('title', title || '')
+        formData.append('subTitle', subTitle || '')
+        formData.append('content', content || '')
+
+        if (imgUrl instanceof File) {
+            formData.append('img', imgUrl) // Handle file uploads
+        } else if (typeof imgUrl === 'string') {
+            formData.append('imgUrl', imgUrl) // Handle existing image URL
+        }
+    
+        const response = await api.patch(`/post/${postId}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
         });
         return response.data;
     };
+
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -55,10 +69,10 @@ const PostContent = () => {
     };
 
     const postContent = async () => {
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('subTitle', subTitle);
-        formData.append('content', content);
+        const formData = new FormData()
+        formData.append('title', title)
+        formData.append('subTitle', subTitle)
+        formData.append('content', content)
 
         if (image) {
             formData.append('img', image);
@@ -75,12 +89,13 @@ const PostContent = () => {
     const { mutate: createpost } = useMutation(postContent, {
         onSuccess: (data) => {
             if (data) {
+                queryClient.invalidateQueries("getBlogPost")
                 toast.success("post created sucessfully")
-                setTitle('');
-                setSubTitle('');
-                setContent('');
-                setImage(null);
-                setExistingImageUrl(null);
+                setTitle('')
+                setSubTitle('')
+                setContent('')
+                setImage(null)
+                navigate("/dashboard")
             }
         },
         onError: (error: any) => {
@@ -90,16 +105,16 @@ const PostContent = () => {
 
     const { mutate: update } = useMutation(updatePost, {
         onSuccess: () => {
-            queryClient.invalidateQueries("getBlogPost");
-            toast.success("Post updated successfully");
-            setTitle('');
-            setSubTitle('');
-            setContent('');
-            setImage(null);
-            setExistingImageUrl(null);
+            queryClient.invalidateQueries("getBlogPost")
+            toast.success("Post updated successfully")
+            queryClient.refetchQueries("getBlogPost");
+            setTitle('')
+            setSubTitle('')
+            setContent('')
+            setImage(null)
         },
         onError: () => {
-            toast.error("Error updating post");
+            toast.error("Error updating post")
         },
     });
 
@@ -113,7 +128,7 @@ const PostContent = () => {
                 title,
                 subTitle,
                 content,
-                imgUrl: image ? undefined : existingImageUrl
+                imgUrl: image || undefined 
             };
             update(updatedData);
         } else {
@@ -121,6 +136,17 @@ const PostContent = () => {
         }
     }
 
+    const handleDisableButton = useCallback(() => {
+        if (!id) {
+            setDisabled(!(title.length > 0 && content.length > 0 && image !== null));
+        } else {
+            setDisabled(false); 
+        }
+    }, [title, content, image, id]);
+
+    useEffect(() => {
+        handleDisableButton()
+    }, [handleDisableButton])
 
     return (
         <main className={styles.main}>
@@ -168,7 +194,7 @@ const PostContent = () => {
                 <Button
                     type="submit"
                     isLoading={false}
-                    disabled={false}
+                    disabled={disabled}
                     className={styles.button}
                 >
                     {id ? "Update Post" : "Send Post"}
