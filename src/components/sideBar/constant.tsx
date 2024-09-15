@@ -1,4 +1,4 @@
-import { bellIcon, caretDownIcon, dashboardIcon, manageIcon, postIcon } from "../../../public/assets"
+import { bellIcon, caretDownIcon, dashboardIcon, manageIcon, postIcon, profileIcon } from "../../../public/assets"
 
 export const links = [
     {
@@ -21,7 +21,7 @@ export const links = [
         icn: caretDownIcon,
         subItems: [
             { id: 0, label: "Create/Request", to: "/dashboard/power-management/create" },
-            { id: 1, label: "Item Two", to: "/dashboard/power-management/item-two" }
+            // { id: 1, label: "Item Two", to: "/dashboard/power-management/item-two" }
         ]
     },
     {
@@ -33,19 +33,19 @@ export const links = [
     {
         id: 4,
         to: "/dashboard/user-profile",
-        icon: bellIcon,
+        icon: profileIcon,
         label: "Profile",
     },
-    {
-        id: 5,
-        to: "/dashboard/faq",
-        icon: bellIcon,
-        label: "F.A.Q",
-    },
-    {
-        id: 6,
-        to: "/dashboard/contact",
-        icon: bellIcon,
-        label: "Contact",
-    }
+    // {
+    //     id: 5,
+    //     to: "/dashboard/faq",
+    //     icon: bellIcon,
+    //     label: "F.A.Q",
+    // },
+    // {
+    //     id: 6,
+    //     to: "/dashboard/contact",
+    //     icon: bellIcon,
+    //     label: "Contact",
+    // }
 ]

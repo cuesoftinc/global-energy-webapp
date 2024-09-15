@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import Button from "../../../../components/button/Button"
 import Input from "../../../../components/input/Input"
 import styles from "./PostContent.module.scss"
-// import { FormDataPostRequest } from "../../../../utils/apiClient";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -13,7 +12,6 @@ interface updateProps {
     title?: string;
     subTitle?: string;
     content?: string;
-    imgUrl?: string | File
 }
 
 const PostContent = () => {
@@ -41,26 +39,14 @@ const PostContent = () => {
         }
     }, [id]);
 
-    const updatePost = async ({ postId, title, subTitle, content, imgUrl }: updateProps) => {
-        const formData = new FormData()
-        formData.append('title', title || '')
-        formData.append('subTitle', subTitle || '')
-        formData.append('content', content || '')
-
-        if (imgUrl instanceof File) {
-            formData.append('img', imgUrl) // Handle file uploads
-        } else if (typeof imgUrl === 'string') {
-            formData.append('imgUrl', imgUrl) // Handle existing image URL
-        }
-    
-        const response = await api.patch(`/post/${postId}`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
+    const updatePost = async ({ postId, title, subTitle, content }: updateProps) => {
+        const response = await api.patch(`/post/${postId}`, {
+            title,
+            subTitle,
+            content,
         });
         return response.data;
     };
-
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -107,7 +93,6 @@ const PostContent = () => {
         onSuccess: () => {
             queryClient.invalidateQueries("getBlogPost")
             toast.success("Post updated successfully")
-            queryClient.refetchQueries("getBlogPost");
             setTitle('')
             setSubTitle('')
             setContent('')
@@ -129,7 +114,6 @@ const PostContent = () => {
                 title,
                 subTitle,
                 content,
-                imgUrl: image || undefined 
             };
             update(updatedData);
         } else {
@@ -141,7 +125,7 @@ const PostContent = () => {
         if (!id) {
             setDisabled(!(title.length > 0 && content.length > 0 && image !== null));
         } else {
-            setDisabled(false); 
+            setDisabled(false);
         }
     }, [title, content, image, id]);
 
@@ -183,6 +167,7 @@ const PostContent = () => {
                         cols={30} rows={10}
                     ></textarea>
                 </div>
+                {!id && (
                 <div className={styles.inputDiv}>
                     <label htmlFor="imageUpload" className={styles.label}>Upload Image</label>
                     <input
@@ -192,6 +177,7 @@ const PostContent = () => {
                         onChange={handleImageChange}
                     />
                 </div>
+                )}
                 <Button
                     type="submit"
                     isLoading={false}

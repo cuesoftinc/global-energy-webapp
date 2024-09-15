@@ -1,7 +1,6 @@
 @use "../../scss/global//colors" as *;
 @use "../../scss/utils/functions" as fn;
 
-
 .main {
   position: sticky;
   top: 0;
@@ -14,6 +13,19 @@
   background-color: $blue;
   z-index: 10;
 
+  .profileDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    column-gap: fn.rem(8);
+  }
+
+  .name {
+    color: white;
+  }
+
   .path {
     display: flex;
     flex-direction: row;
@@ -21,7 +33,6 @@
     justify-content: center;
     font-size: fn.rem(24);
     padding-right: 24px;
-    // column-gap: fn.rem(10);
     color: white;
   }
 
@@ -30,9 +41,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-size: fn.rem(24);
+    font-size: fn.rem(20);
     column-gap: fn.rem(10);
     color: white;
+   @media screen and (max-width: 430px) {
+    font-size: fn.rem(16);
+   }
   }
 }
 
@@ -41,6 +55,9 @@
   .logo {
     width: 200px;
   }
+}
+.menuIcon {
+  cursor: pointer;
 }
 
 .Newmain {
@@ -70,9 +87,19 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-size: fn.rem(24);
+    font-size: fn.rem(20);
     column-gap: fn.rem(10);
     color: white;
   }
-
+  .newProfileDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    column-gap: fn.rem(8);
+    .name {
+      color: white;
+    }
+  }
 }

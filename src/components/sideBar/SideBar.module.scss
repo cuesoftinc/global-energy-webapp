@@ -17,10 +17,14 @@
     color: $white;
     padding-left: fn.rem(10);
     padding-right: fn.rem(10);
-    padding-top: fn.rem(16);
-    padding-bottom: fn.rem(15);
+    padding-top: fn.rem(12);
+    padding-bottom: fn.rem(13);
     // background-color: $dark-green;
     background-color: $blue;
+    @media screen and (max-width: 1020px) {
+      padding-top: fn.rem(12);
+      padding-bottom: fn.rem(12);
+    }
 
     .logo {
       width: 200px;
@@ -38,6 +42,14 @@
     margin: fn.rem(24);
     border-radius: 12px;
     overflow-y: scroll;
+    box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.25) inset;
+    background-image: radial-gradient(
+        at 88% 40%,
+        hsla(240, 15%, 9%, 1) 0px,
+        transparent 85%
+      ),
+      radial-gradient(at 0% 64%, #0e1c4d 0px, transparent 85%),
+      radial-gradient(at 100% 99%, rgb(3, 48, 3) 0px, transparent 25%);
 
     @media screen and (orientation: Landscape) and (max-height: 900px) {
       gap: fn.rem(28);
@@ -63,7 +75,7 @@
         gap: fn.rem(10);
         font-size: fn.rem(14);
         color: #ababab;
-        
+
         &:hover {
           background: linear-gradient(
             271.32deg,
@@ -82,7 +94,7 @@
       .active {
         background: linear-gradient(
           271.32deg,
-          rgba(255, 255, 255, 0) -118.03%,
+          rgba(255, 255, 255, 0) -12.13%,
           rgba(255, 255, 255, 0.4) 118.03%
         );
         filter: brightness(0) invert(1);
@@ -106,9 +118,10 @@
         padding: 8px 0;
         padding-left: 45px;
         color: #ababab;
+        font-size: fn.rem(14);
 
         &:hover {
-          color: white
+          color: white;
         }
       }
       .subActive {
@@ -123,6 +136,17 @@
       gap: fn.rem(10);
       cursor: pointer;
       margin-top: 2rem;
+      background: transparent;
+
+      &:hover {
+        filter: brightness(0) invert(1);
+      }
+
+      .logout {
+        &:hover {
+          filter: brightness(0) invert(1);
+        }
+      }
 
       .logoutText {
         font-size: fn.rem(16);

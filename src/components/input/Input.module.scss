@@ -10,7 +10,7 @@ main {
   }
 
   .label {
-    font-size: fn.rem(18);
+    font-size: fn.rem(16);
     color: #8a8a8a;
     font-weight: 500;
   }
@@ -26,8 +26,8 @@ main {
   }
   .input {
     width: 100%;
-    color: $text;
-    font-size: fn.rem(20);
+    color: $secondary-color-dark;
+    font-size: fn.rem(16);
     background-color: $dim-white;
     padding: fn.rem(12);
     border-radius: fn.rem(6);
@@ -36,7 +36,7 @@ main {
 
   .input::placeholder {
     color: #cbcbcb;
-    font-size: fn.rem(18);
+    font-size: fn.rem(14);
   }
 
   .input:focus {
