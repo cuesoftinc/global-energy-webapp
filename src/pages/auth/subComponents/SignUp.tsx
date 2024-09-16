@@ -32,6 +32,9 @@ const initialState = {
 const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
     const [userData, setUserData] = useState(initialState)
     const [disabled, setDisabled] = useState(true);
+    const [showPassword, setShowPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
 
     const registerUser = async () => {
         setOverlay(true)
@@ -126,6 +129,14 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
     useEffect(() => {
         handleDisableButton()
     }, [handleDisableButton])
+
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword)
+    }
+    const handleShowConfirmPassword = () => {
+        setShowConfirmPassword(!showConfirmPassword)
+    }
+
 
     return (
         <div className={styles.form}>
@@ -249,10 +260,12 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                 <Input
                     value={userData.password}
                     id="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     label="Password"
                     placeholder="Enter password"
-                    alt={false}
+                    alt={true}
+                    see={showPassword}
+                    onClick={handleShowPassword}
                     showFilter={false}
                     autocomplete="new-password"
                     onChange={(e) => {
@@ -265,10 +278,12 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                 <Input
                     value={userData.confirmPassword}
                     id="comfirmPassword"
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     label="Confirms Password"
                     placeholder="Confirm password"
-                    alt={false}
+                    alt={true}
+                    see={showConfirmPassword}
+                    onClick={handleShowConfirmPassword}
                     showFilter={false}
                     autocomplete="new-password"
                     onChange={(e) => {

@@ -18,6 +18,8 @@ import trash from "./icons/trash.svg"
 import edit from "./icons/edit.svg"
 import backIcon from "./icons/arrow-left.svg"
 import profileIcon from "./icons/profile-icon.svg"
+import closeEye from "./icons/eye-slash.svg"
+import openEye from "./icons/eye.svg"
 
 export {
     homeIcon,
@@ -39,5 +41,7 @@ export {
     trash,
     edit,
     backIcon,
-    profileIcon
+    profileIcon,
+    closeEye,
+    openEye,
 }

@@ -40,9 +40,11 @@ const ViewPost = () => {
                 <img src={backIcon} alt="back icon" />
                 <p onClick={() => navigate(-1)} className={styles.back}>Back</p>
             </div>
-            <div className={styles.pattern}></div>
-            <div className={styles.secondGlow}>
-                <div className={styles.glow}></div>
+            <div className={styles.patternDiv}>
+                <div className={styles.pattern}></div>
+                <div className={styles.secondGlow}>
+                    <div className={styles.glow}></div>
+                </div>
             </div>
             <div className={styles.container}>
                 <div>
@@ -56,7 +58,7 @@ const ViewPost = () => {
                     <hr />
                 </div>
                 <div className={styles.textImg}>
-                    <div>
+                    <div className={styles.titleDiv}>
                         <p className={styles.title}>{singlePost?.title}</p>
                         <p className={styles.subTitle}>{singlePost?.subTitle}</p>
                     </div>

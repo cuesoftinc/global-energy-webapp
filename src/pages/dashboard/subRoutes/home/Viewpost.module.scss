@@ -2,8 +2,8 @@
 @use "../../../../scss/utils/functions" as fn;
 
 .main {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1 1fr;
   row-gap: fn.rem(12);
 
   .backDiv {
@@ -17,42 +17,56 @@
       font-weight: 600;
     }
   }
-  .glow {
-    position: absolute;
-    width: 25%;
-    top: 350px;
-    opacity: 30%;
-    border-radius: 50%;
-    background-color: #fff;
-    -webkit-box-shadow: 0px 0px 105px 45px rgba(0, 26, 122, 0.9);
-    -moz-box-shadow: 0px 0px 105px 45px rgba(0, 26, 122, 0.9);
-    box-shadow: 0px 0px 105px 45px rgba(0, 26, 122, 0.9);
-  }
-  .secondGlow {
-    position: absolute;
-    top: 50px;
-    right: 200px;
-  }
-
-  .pattern {
-    position: absolute;
-    top: 250px;
-    right: -10px;
-    height: 350px;
-    width: 350px;
-    opacity: 10%;
-    border-radius: 50%;
-    background-image: repeating-radial-gradient(  #fff 80%,#E3E8F0 90%,#fff 90%);
+  .patternDiv {
+    .glow {
+      position: absolute;
+      width: 25%;
+      top: 350px;
+      opacity: 30%;
+      border-radius: 50%;
+      background-color: #fff;
+      -webkit-box-shadow: 0px 0px 105px 45px rgba(0, 26, 122, 0.9);
+      -moz-box-shadow: 0px 0px 105px 45px rgba(0, 26, 122, 0.9);
+      box-shadow: 0px 0px 105px 45px rgba(0, 26, 122, 0.9);
+    }
+    .secondGlow {
+      position: absolute;
+      top: 50px;
+      right: 200px;
+    }
+  
+    .pattern {
+      position: absolute;
+      top: 250px;
+      right: -10px;
+      height: 350px;
+      width: 350px;
+      opacity: 10%;
+      border-radius: 50%;
+      background-image: repeating-radial-gradient(  #fff 80%,#E3E8F0 90%,#fff 90%);
+    }
+    @media screen and (max-width: 540px) {
+      display: none;
+    }
   }
 
   .container {
     display: flex;
     flex-direction: column;
-    row-gap: fn.rem(12);
+    row-gap: fn.rem(16);
+
+    .titleDiv {
+      display: flex;
+      flex-direction: column;
+      row-gap: fn.rem(6);
+    }
     .title {
       font-size: fn.rem(32);
       color: $secondary-color-dark;
       font-weight: bold;
+      @media screen and (max-width: 540px) {
+        font-size: fn.rem(24);
+      }
     }
 
     .textImg {
@@ -81,10 +95,12 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-color: aqua;
       width: 60%;
       height: auto;
       border-radius: 8px;
+      @media screen and (max-width: 540px) {
+        width: 100%;
+      }
 
       img {
         width: 100%;
