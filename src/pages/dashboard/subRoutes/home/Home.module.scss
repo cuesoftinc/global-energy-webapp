@@ -114,12 +114,15 @@
   justify-content: space-between;
   width: 100%;
   padding: 0 12px 12px 12px;
+  background-color: none;
+  cursor: pointer;
   .btn {
-    background-color: none;
+    background-color: #f9f9f9; 
     color: $blue;
     font-size: 14px;
     font-weight: 600;
     text-decoration: underline;
+    cursor: pointer;
   }
 }
 
@@ -144,7 +147,7 @@
 .input {
   width: 100%;
   color: $text;
-  font-size: fn.rem(20);
+  font-size: fn.rem(16);
   background-color: $dim-white;
   padding: fn.rem(12);
   border-radius: fn.rem(6);
@@ -153,7 +156,7 @@
 
 .input::placeholder {
   color: #cbcbcb;
-  font-size: fn.rem(18);
+  font-size: fn.rem(16);
 }
 
 .input:focus {

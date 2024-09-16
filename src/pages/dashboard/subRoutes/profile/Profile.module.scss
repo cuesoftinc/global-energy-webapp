@@ -1,0 +1,103 @@
+@use "../../../../scss/global/colors" as *;
+@use "../../../../scss/utils/functions" as fn;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  row-gap: fn.rem(24);
+
+  .borderDiv {
+    display: grid;
+    grid-template-columns: 35% 1fr;
+    column-gap: fn.rem(24);
+    border: 1px solid $border;
+    padding: fn.rem(24);
+    border-radius: fn.rem(8);
+    @media screen and (max-width: 540px) {
+      display: flex;
+      flex-direction: column;
+      row-gap: fn.rem(24);
+    }
+  }
+
+  .titleDiv {
+    display: flex;
+    flex-direction: column;
+    row-gap: fn.rem(8);
+  }
+  .title {
+    font-size: fn.rem(14);
+    font-weight: 600;
+  }
+  .subText {
+    font-size: fn.rem(14);
+    font-weight: 500;
+  }
+  .detailDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    row-gap: fn.rem(8);
+
+    p {
+      font-size: fn.rem(14);
+    }
+  }
+
+  .btnDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-shadow: 2px -2px 6px 0px #0e1c4d inset;
+    box-shadow: -2px 2px 6px 0px #f2f2f280 inset;
+    padding: fn.rem(12);
+    border-radius: fn.rem(6);
+    background: $border;
+    border: 1px solid #0e1c4d;
+    color: $blue;
+    font-weight: 700;
+    font-size: fn.rem(14);
+    line-height: fn.rem(20);
+    letter-spacing: 0em;
+    width: 30%;
+    cursor: pointer;
+    @media screen and (max-width: 1024px) {
+      width: 40%;
+    }
+    @media screen and (max-width: 540px) {
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: $blue;
+      color: $white;
+    }
+  }
+
+  .delButton {
+    border: 1px solid red;
+    color: red;
+    background: $border;
+    padding: fn.rem(12);
+    font-size: fn.rem(14);
+    width: 30%;
+    @media screen and (max-width: 1024px) {
+      width: 40%;
+    }
+    @media screen and (max-width: 540px) {
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: red;
+      color: white;
+    }
+  }
+}

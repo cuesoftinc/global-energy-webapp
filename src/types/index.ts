@@ -20,3 +20,17 @@ export interface BlogPost {
     _id: string,
 }
 
+export interface User {
+    id: string,
+    name: string,
+    email: string,
+    userName: string,
+    accountType: string,
+    address: string,
+    phoneNumber: string,
+    subscriptionType: string,
+    isActive: boolean,
+    createdAt: string,
+    updatedAt: string,
+}
+

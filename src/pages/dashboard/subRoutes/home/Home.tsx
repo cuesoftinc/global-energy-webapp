@@ -17,20 +17,18 @@ const Home = () => {
 
     const getBlogPost = async () => {
         const response = await api.get("/post")
-        console.log("old",response.data)
         return response.data.data
     }
     const { refetch } = useQuery("getBlogPost", getBlogPost, {
         onSuccess: (data) => {
             setPosts(data);
-            console.log("New data:", data)
         },
         onError: () => {
             toast.error("error fetching data")
         }
     })
+    
     useEffect(() => {
-        queryClient.invalidateQueries("getBlogPost");
         refetch();
     }, [refetch, queryClient]);
 
@@ -40,7 +38,7 @@ const Home = () => {
     const mutation = useMutation(deletePost, {
         onSuccess: (_, postId) => {
             queryClient.invalidateQueries("getBlogPost");
-            toast.success(`Post ${postId} deleted successfully`);
+            toast.success(`Post with ID: ${postId} deleted successfully`);
         },
         onError: () => {
             toast.error("Error deleting post");
