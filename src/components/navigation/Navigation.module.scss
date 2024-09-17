@@ -44,9 +44,9 @@
     font-size: fn.rem(20);
     column-gap: fn.rem(10);
     color: white;
-   @media screen and (max-width: 430px) {
-    font-size: fn.rem(16);
-   }
+    @media screen and (max-width: 430px) {
+      font-size: fn.rem(16);
+    }
   }
 }
 

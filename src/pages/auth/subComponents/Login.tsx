@@ -25,6 +25,7 @@ const Login: React.FC<PROPS> = ({ setActive, setOverlay, setOverlayText }) => {
 
     const [userData, setUserData] = useState(initialState)
     const [disabled, setDisabled] = useState(true)
+    const [showPassword, setShowPassword] = useState(false)
 
     const loginUser = async () => {
         setOverlay(true)
@@ -91,6 +92,10 @@ const Login: React.FC<PROPS> = ({ setActive, setOverlay, setOverlayText }) => {
         handleDisableButton()
     }, [handleDisableButton])
 
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword)
+    }
+
 
     return (
         <div className={styles.form}>
@@ -118,10 +123,12 @@ const Login: React.FC<PROPS> = ({ setActive, setOverlay, setOverlayText }) => {
                     <Input
                         value={userData.password}
                         id="password"
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         label="Password"
                         placeholder="Enter password"
-                        alt={false}
+                        alt={true}
+                        see={showPassword}
+                        onClick={handleShowPassword}
                         showFilter={false}
                         autocomplete="current-password"
                         onChange={(e) => {

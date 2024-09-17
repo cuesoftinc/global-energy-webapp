@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./LoadingScreen.module.scss";
+import styles from "./LoadingScreen.module.scss"
 import { ball } from "../../../public/assets";
 
 interface PROPS {

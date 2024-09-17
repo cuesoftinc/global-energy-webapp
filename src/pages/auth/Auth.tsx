@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Login from "./subComponents/Login"
 import SignUp from "./subComponents/SignUp";
 import styles from "./Auth.module.scss"
@@ -17,20 +17,16 @@ const Auth: React.FC<AuthProps> = ({ children }) => {
     const [overlay, setOverlay] = useState(false);
     const [overlayText, setOverlayText] = useState("");
 
-    useEffect(() => {
-        console.log("Active state:", active);
-    }, [active]);
-
     const renderChildren = () => {
         if (React.isValidElement(children)) {
-          return React.cloneElement(children as React.ReactElement, {
-            setActive,
-            setOverlay,
-            setOverlayText,
-          });
+            return React.cloneElement(children as React.ReactElement, {
+                setActive,
+                setOverlay,
+                setOverlayText,
+            });
         }
         return null;
-      };
+    };
 
     let content = (
         <Login setActive={setActive} setOverlay={setOverlay} setOverlayText={setOverlayText} />
@@ -57,16 +53,7 @@ const Auth: React.FC<AuthProps> = ({ children }) => {
                     <div className={styles.logoContainer}>
                         <img src={Logo} alt="logo" className={styles.logo} />
                     </div>
-
-                    {/* Render children if present, otherwise render the current active component */}
-                    {/* {children && React.isValidElement(children)
-                        ? React.cloneElement(children as React.ReactElement, {
-                            setActive,
-                            setOverlay,
-                            setOverlayText,
-                        })
-                        : content} */}
-                        {renderChildren() || content}
+                    {renderChildren() || content}
                     <LoadingScreen overlay={overlay} overlayText={overlayText} />
                 </section>
 

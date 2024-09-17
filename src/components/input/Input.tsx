@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Input.module.scss";
+import { closeEye, openEye } from "../../../public/assets";
 
 interface PROPS {
     id: string;
@@ -8,8 +9,8 @@ interface PROPS {
     value: string;
     placeholder: string;
     className?: string;
-    img?: string;
     alt?: boolean,
+    see?: boolean,
     showFilter?: boolean;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -24,11 +25,18 @@ const Input: React.FC<PROPS> = ({
     placeholder = "placeholder",
     className,
     alt,
-    img,
+    see,
     onChange,
     onClick,
     autocomplete
 }) => {
+    const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        if (onClick) {
+            onClick(e)
+        }
+    };
+
     return (
         <main>
             <div className={styles.inputDiv}>
@@ -46,7 +54,7 @@ const Input: React.FC<PROPS> = ({
                         autoComplete={autocomplete}
                     />
                     {alt && (
-                        <button className={styles.button} onClick={onClick}><img src={img} alt="icon" className={styles.icon} /></button>
+                        <button className={styles.button} onClick={handleButtonClick}><img src={see? openEye : closeEye} alt="icon" className={styles.icon} /></button>
                     )}
                 </div>
             </div>

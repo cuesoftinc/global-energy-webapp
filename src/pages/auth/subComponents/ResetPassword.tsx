@@ -23,6 +23,8 @@ const initialState = {
 const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText }) => {
     const [userData, setUserData] = useState(initialState)
     const [disabled, setDisabled] = useState(true)
+    const [showPassword, setShowPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -83,6 +85,14 @@ const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText }) => {
         handleDisableButton();
     }, [handleDisableButton]);
 
+
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword)
+    }
+    const handleShowConfirmPassword = () => {
+        setShowConfirmPassword(!showConfirmPassword)
+    }
+
     return (
         <div className={styles.form}>
             <div className={styles.header}>
@@ -93,10 +103,12 @@ const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText }) => {
                 <Input
                     value={userData.newPassword}
                     id="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     label="New Password"
                     placeholder="Enter new password"
-                    alt={false}
+                    alt={true}
+                    see={showPassword}
+                    onClick={handleShowPassword}
                     showFilter={false}
                     onChange={(e) => {
                         setUserData((prev) => ({
@@ -108,10 +120,12 @@ const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText }) => {
                 <Input
                     value={userData.confirmPassword}
                     id="confirmPassword"
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     label="Confirm Password"
                     placeholder="Confirm your new password"
-                    alt={false}
+                    alt={true}
+                    see={showConfirmPassword}
+                    onClick={handleShowConfirmPassword}
                     showFilter={false}
                     onChange={(e) => {
                         setUserData((prev) => ({
