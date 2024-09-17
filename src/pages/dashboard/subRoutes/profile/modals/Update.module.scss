@@ -14,11 +14,17 @@
     }
   }
 
+
   .formContent {
     display: flex;
     flex-direction: column;
     gap: fn.rem(20);
 
+    .nameDiv {
+      display: flex;
+      flex-direction: row;
+      gap: fn.rem(20);
+    }
     .inputDiv {
       display: flex;
       flex-direction: column;
