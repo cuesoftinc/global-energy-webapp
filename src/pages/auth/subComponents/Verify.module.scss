@@ -24,6 +24,9 @@
     @media screen and (max-width: 920px) {
       text-align: center;
     }
+    @media screen and (max-width: 430px){
+      font-size: fn.rem(16);
+    }
   }
   @media screen and (min-width: 1500px) {
     max-width: fn.rem(800);

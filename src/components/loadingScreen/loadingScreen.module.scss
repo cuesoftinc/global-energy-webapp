@@ -1,44 +1,40 @@
-@use "../../scss/global/colors" as *;
-@use "../../scss/utils/functions" as fn;
-
 .main {
-    position: fixed;
-    width: 50%;
-    inset: 0;
-    background: #01262662;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
+  position: fixed;
+  width: 50%;
+  inset: 0;
+  background: #01262662;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  @media screen and (max-width: 920px) {
+    width: 100%;
+  }
+
+  .loadingBall {
+    animation: bounce 1s infinite;
+    width: 60px;
+    height: 60px;
+  }
+  .overlayText {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
     @media screen and (max-width: 920px) {
-      width: 100%;
+      text-align: center;
     }
-  
-    .loadingBall {
-      animation: bounce 1s infinite;
-      width: 60px;
-      height: 60px;
-    }
-    .overlayText {
-      font-size: 20px;
-      font-weight: 600;
-      color: #ffffff;
-      @media screen and (max-width: 920px) {
-        text-align: center;
-      }
-      @media screen and (max-width: 414px) {
-        font-size: 16px;
-      }
-    }
-    @keyframes bounce {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(10px);
-      }
+    @media screen and (max-width: 414px) {
+      font-size: 16px;
     }
   }
-  
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+  }
+}

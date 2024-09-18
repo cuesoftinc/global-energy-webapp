@@ -19,6 +19,9 @@
       font-size: fn.rem(20);
       // color: $text-alt;
       margin-top: fn.rem(10);
+      @media screen and (max-width: 430px){
+        font-size: fn.rem(16);
+      }
     }
     @media screen and (min-width: 1500px) {
       max-width: fn.rem(800);

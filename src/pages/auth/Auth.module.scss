@@ -26,6 +26,9 @@
     padding-top: 6px;
     .logo {
       width: 250px;
+      @media screen and (max-width: 430px) {
+        width: 200px;
+      }
     }
   }
   .right {

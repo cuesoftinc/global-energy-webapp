@@ -145,7 +145,6 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                 <span className={styles.subtitle}>Enter your personal details to create an account with us.</span>
             </div>
             <form onSubmit={handleRegister} className={styles.formContent}>
-                <div className={styles.namesDiv}>
                     <Input
                         value={userData.firstName}
                         id="firstName"
@@ -176,7 +175,6 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                             }))
                         }}
                     />
-                </div>
 
                 <Input
                     value={userData.email}
@@ -224,7 +222,6 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                     }}
                 />
 
-                <div className={styles.namesDiv}>
                     <Input
                         value={userData.phoneNumber}
                         id="phonenumber"
@@ -255,7 +252,6 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                         </select>
 
                     </div>
-                </div>
 
                 <Input
                     value={userData.password}

@@ -3,10 +3,11 @@ import Login from "./subComponents/Login"
 import SignUp from "./subComponents/SignUp";
 import styles from "./Auth.module.scss"
 import { Logo } from "../../../public/assets";
-import LoadingScreen from "../../components/loadingScreen/LoadingScreen";
+
 import ForgetPassword from "./subComponents/ForgetPassword";
 import ProtectedRoute from "../../components/protectedRoutes/ProtectedRoute";
 import Verify from "./subComponents/Verify";
+import LoadingScreen from "../../components/loadingScreen/LoadingScreen";
 
 interface AuthProps {
     children?: React.ReactNode;

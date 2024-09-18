@@ -78,7 +78,6 @@ const UpdateAccountModal: React.FC<UpdateAccountModalProps > = ({ userId, onClos
                 </div>
             </div>
             <form onSubmit={handleSubmit} className={styles.formContent}>
-                <div className={styles.nameDiv}>
                     <Input
                         value={userData.firstName}
                         id="firstName"
@@ -109,7 +108,6 @@ const UpdateAccountModal: React.FC<UpdateAccountModalProps > = ({ userId, onClos
                             }))
                         }}
                     />
-                </div>
 
                 <Input
                     value={userData.address}
