@@ -4,7 +4,6 @@
 .main {
   position: sticky;
   height: 100%;
-  // background-color: $light-green;
   background-color: $light-blue;
   display: flex;
   flex-direction: column;
@@ -19,15 +18,31 @@
     padding-right: fn.rem(10);
     padding-top: fn.rem(12);
     padding-bottom: fn.rem(13);
-    // background-color: $dark-green;
     background-color: $blue;
+
     @media screen and (max-width: 1020px) {
-      padding-top: fn.rem(12);
-      padding-bottom: fn.rem(12);
+      padding-top: fn.rem(17);
+      padding-bottom: fn.rem(18);
     }
 
     .logo {
       width: 200px;
+      @media screen and (max-width: 430px) {
+        width: 150px;
+       }
+    }
+
+    .menuIcon {
+      display: block;
+      @media screen and (max-width: 855px) {
+       display: none;
+      }
+    }
+    .menuMobileIcon {
+      display: none;
+      @media screen and (max-width: 855px) {
+        display: block;
+       }
     }
   }
 

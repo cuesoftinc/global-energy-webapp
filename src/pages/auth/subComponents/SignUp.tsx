@@ -57,27 +57,24 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
 
     const { mutate, isLoading } = useMutation(registerUser, {
         onSuccess: (data) => {
-            if (data?.message) {
-                toast.success(data.message, { duration: 5000 });
+            if (data?.response?.status) {
+                toast.error(data?.response?.data?.message?.message, { duration: 5000 });
                 setOverlay(false);
                 setOverlayText("");
-                console.log("Setting active to 'verify'");
-                setActive("verify");
+                return
             }
+            toast.success(data.message, { duration: 5000 });
+            setOverlay(false);
+            setOverlayText("");
+            setTimeout(() => {
+                setActive("verify");
+            }, 1500);
         },
         onError: (error: any) => {
-            setOverlay(false)
-            setOverlayText("")
-            toast.error(error?.response?.data?.message, { duration: 5000 })
-            if (error?.response?.data?.errors) {
-                error.response.data.errors.forEach((err: any) => {
-                    toast.error(Object.values(err).join(" "));
-                });
-            } else {
-                // Generic error message
-                toast.error(error?.response?.data?.message || "An error occurred", { duration: 5000 });
-            }
-        }
+            console.error("Error Response:", error);
+            setOverlay(false);
+            setOverlayText("");
+        },
     });
 
     const handleRegister = useCallback(
@@ -145,36 +142,36 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                 <span className={styles.subtitle}>Enter your personal details to create an account with us.</span>
             </div>
             <form onSubmit={handleRegister} className={styles.formContent}>
-                    <Input
-                        value={userData.firstName}
-                        id="firstName"
-                        type="text"
-                        label="First Name"
-                        placeholder="Enter first name"
-                        alt={false}
-                        showFilter={false}
-                        onChange={(e) => {
-                            setUserData((prev) => ({
-                                ...prev,
-                                firstName: e.target.value
-                            }))
-                        }}
-                    />
-                    <Input
-                        value={userData.lastName}
-                        id="lastName"
-                        type="text"
-                        label="Last Name"
-                        placeholder="Enter last name"
-                        alt={false}
-                        showFilter={false}
-                        onChange={(e) => {
-                            setUserData((prev) => ({
-                                ...prev,
-                                lastName: e.target.value
-                            }))
-                        }}
-                    />
+                <Input
+                    value={userData.firstName}
+                    id="firstName"
+                    type="text"
+                    label="First Name"
+                    placeholder="Enter first name"
+                    alt={false}
+                    showFilter={false}
+                    onChange={(e) => {
+                        setUserData((prev) => ({
+                            ...prev,
+                            firstName: e.target.value
+                        }))
+                    }}
+                />
+                <Input
+                    value={userData.lastName}
+                    id="lastName"
+                    type="text"
+                    label="Last Name"
+                    placeholder="Enter last name"
+                    alt={false}
+                    showFilter={false}
+                    onChange={(e) => {
+                        setUserData((prev) => ({
+                            ...prev,
+                            lastName: e.target.value
+                        }))
+                    }}
+                />
 
                 <Input
                     value={userData.email}
@@ -222,37 +219,36 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                     }}
                 />
 
-                    <Input
-                        value={userData.phoneNumber}
-                        id="phonenumber"
-                        type="number"
-                        label="Phone Number"
-                        placeholder="Enter phone number"
-                        alt={false}
-                        showFilter={false}
-                        onChange={(e) => {
-                            setUserData((prev) => ({
-                                ...prev,
-                                phoneNumber: e.target.value
-                            }))
-                        }}
-                    />
-                    <div className={styles.inputDiv}>
-                        <label htmlFor="accountType" className={styles.label}>Account Type</label>
-                        <select
-                            id="accountType"
-                            value={userData.accountType}
-                            onChange={(e) => setUserData({ ...userData, accountType: e.target.value })}
-                            className={styles.selectInput}
-                        >
-                            <option value="">Select account type</option>
-                            <option value="individual">Individual</option>
-                            <option value="family">Family</option>
-                            <option value="corporate">Corporate</option>
-                        </select>
+                <Input
+                    value={userData.phoneNumber}
+                    id="phonenumber"
+                    type="number"
+                    label="Phone Number"
+                    placeholder="Enter phone number"
+                    alt={false}
+                    showFilter={false}
+                    onChange={(e) => {
+                        setUserData((prev) => ({
+                            ...prev,
+                            phoneNumber: e.target.value
+                        }))
+                    }}
+                />
+                <div className={styles.inputDiv}>
+                    <label htmlFor="accountType" className={styles.label}>Account Type</label>
+                    <select
+                        id="accountType"
+                        value={userData.accountType}
+                        onChange={(e) => setUserData({ ...userData, accountType: e.target.value })}
+                        className={styles.selectInput}
+                    >
+                        <option value="">Select account type</option>
+                        <option value="individual">Individual</option>
+                        <option value="family">Family</option>
+                        <option value="corporate">Corporate</option>
+                    </select>
 
-                    </div>
-
+                </div>
                 <Input
                     value={userData.password}
                     id="password"

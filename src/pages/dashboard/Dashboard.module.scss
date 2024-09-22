@@ -10,6 +10,12 @@
     .Newoutlet {
       margin: 24px;
     }
+    @media screen and (max-width: 855px) {
+      width: 100%;
+    }
+    @media screen and (max-width: 430px) {
+      width: 100%;
+    }
   }
 }
 
@@ -23,16 +29,33 @@
   display: grid;
   grid-template-columns: 300px auto;
   background-color: $background;
+  @media screen and (max-width: 855px) {
+    width: 100%;
+    grid-template-columns: auto;
+  }
+  @media screen and (max-width: 430px) {
+    width: 100%;
+    grid-template-columns: auto;
+  }
 
   .sidebar {
     position: sticky;
     top: 0;
     height: 100vh;
-    // @media screen and (max-width: 414px) {
-    //   position: absolute;
-    //   left: 0;
-    //   right: 0;
-    // }
+    @media screen and (max-width: 855px) {
+      position: fixed;
+      width: 50%;
+      left: 0;
+      right: 0;
+      z-index: 50;
+    }
+    @media screen and (max-width: 430px) {
+      position: fixed;
+      width: 80%;
+      left: 0;
+      right: 0;
+      z-index: 50;
+    }
   }
 
   .outletContainer {
@@ -41,5 +64,9 @@
       min-height: calc(100vh - 82px);
       padding: 24px 32px;
     }
+    @media screen and (max-width: 430px) {
+      width: 100%;
+    }
+    
   }
 }

@@ -50,18 +50,24 @@ const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText }) => {
     const { mutate, isLoading } = useMutation(resetPassword, {
         onSuccess: (data) => {
             if (data?.message) {
-                toast.success(data.message)
+                toast.error(data?.response?.data?.message?.message)
+                setOverlay(false)
+                setOverlayText("")
+                return
+            }
+            toast.success(data.message)
+                console.log("reset", data)
                 setOverlay(false)
                 setOverlayText("")
                 setTimeout(() => {
                     navigate("/")
                 }, 1500)
-            }
         },
         onError: (error: any) => {
             setOverlay(false)
             setOverlayText("")
-            const errorMessage = error?.response?.data?.message || "Something went wrong. Please try again."
+            const errorMessage = error?.response?.data?.message?.message || "Something went wrong. Please try again."
+            console.log("error", errorMessage)
             toast.error(errorMessage)
         }
     })

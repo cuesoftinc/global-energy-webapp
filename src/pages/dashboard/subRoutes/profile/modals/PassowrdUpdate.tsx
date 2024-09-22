@@ -6,36 +6,40 @@ import { useMutation } from "react-query"
 import toast from "react-hot-toast"
 import Button from "../../../../../components/button/Button"
 
+interface PasswordModalProps {
+    onCloseOverlay: () => void
+}
 interface updateProps {
     oldPassword: string
-    newPassword?: string;
-    confirmPassword?: string;
-
+    password?: string;
+    confirmPassword?: string
 }
 
 const initialState = {
     oldPassword: "",
-    newPassword: "",
+    password: "",
     confirmPassword: "",
 }
-const PasswordUpdateModal = () => {
+const PasswordUpdateModal: React.FC<PasswordModalProps> = ({onCloseOverlay}) => {
     const [userData, setUserData] = useState(initialState)
 
-    const updateUser = async ({ oldPassword, newPassword, confirmPassword }: updateProps) => {
-        const response = await api.patch(`/update-password`, {
+    const updateUser = async ({ oldPassword, password, confirmPassword }: updateProps) => {
+        const response = await api.patch(`auth/update-password`, {
             oldPassword,
-            newPassword,
+            password,
             confirmPassword
         })
-        return response
+        return response.data
     }
     const { mutate } = useMutation(updateUser, {
-        onSuccess: () => {
+        onSuccess: (data) => {
             toast.success("Password updated successfully")
+            console.log("newdata", data.response?.data?.message?.message)
             setUserData(initialState)
+            onCloseOverlay()
         },
-        onError: () => {
-            toast.error("Error updating password")
+        onError: (error: any) => {
+            toast.error(error?.response?.data?.message?.message, { duration: 5000 })
         },
     })
 
@@ -69,7 +73,7 @@ const PasswordUpdateModal = () => {
                     }}
                 />
                 <Input
-                    value={userData.newPassword}
+                    value={userData.password}
                     id="newPassword"
                     type="password"
                     label="New Password"
@@ -79,7 +83,7 @@ const PasswordUpdateModal = () => {
                     onChange={(e) => {
                         setUserData((prev) => ({
                             ...prev,
-                            newPassword: e.target.value
+                            password: e.target.value
                         }))
                     }}
                 />

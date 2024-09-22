@@ -12,6 +12,9 @@
     font-weight: 700;
     color: $secondary-color-dark;
     text-transform: uppercase;
+    @media screen and (max-width: 430px) {
+      font-size: fn.rem(16);
+    }
   }
 
   .form {
@@ -23,6 +26,8 @@
     .divs {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
       column-gap: fn.rem(50);
       width: 100%;
     }
@@ -52,7 +57,7 @@
       font-size: fn.rem(16);
       color: #8a8a8a;
       font-weight: 500;
-      @media screen and (max-width: 414px) {
+      @media screen and (max-width: 430px) {
         font-size: fn.rem(14);
       }
     }

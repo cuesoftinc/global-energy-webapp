@@ -26,7 +26,7 @@ const initialState = {
     address: "",
     accountType: "",
 }
-const UpdateAccountModal: React.FC<UpdateAccountModalProps > = ({ userId, onCloseOverlay }) => {
+const UpdateAccountModal: React.FC<UpdateAccountModalProps> = ({ userId, onCloseOverlay }) => {
     const [userData, setUserData] = useState(initialState)
     const queryClient = useQueryClient();
 
@@ -50,8 +50,8 @@ const UpdateAccountModal: React.FC<UpdateAccountModalProps > = ({ userId, onClos
             setUserData(initialState)
             onCloseOverlay()
         },
-        onError: () => {
-            toast.error("Error updating profile")
+        onError: (error: any) => {
+            toast.error(error?.response?.data?.message?.message, { duration: 5000 })
         },
     })
 
@@ -78,36 +78,36 @@ const UpdateAccountModal: React.FC<UpdateAccountModalProps > = ({ userId, onClos
                 </div>
             </div>
             <form onSubmit={handleSubmit} className={styles.formContent}>
-                    <Input
-                        value={userData.firstName}
-                        id="firstName"
-                        type="text"
-                        label="First Name"
-                        placeholder="Enter first name"
-                        alt={false}
-                        showFilter={false}
-                        onChange={(e) => {
-                            setUserData((prev) => ({
-                                ...prev,
-                                firstName: e.target.value
-                            }))
-                        }}
-                    />
-                    <Input
-                        value={userData.lastName}
-                        id="lastName"
-                        type="text"
-                        label="Last Name"
-                        placeholder="Enter last name"
-                        alt={false}
-                        showFilter={false}
-                        onChange={(e) => {
-                            setUserData((prev) => ({
-                                ...prev,
-                                lastName: e.target.value
-                            }))
-                        }}
-                    />
+                <Input
+                    value={userData.firstName}
+                    id="firstName"
+                    type="text"
+                    label="First Name"
+                    placeholder="Enter first name"
+                    alt={false}
+                    showFilter={false}
+                    onChange={(e) => {
+                        setUserData((prev) => ({
+                            ...prev,
+                            firstName: e.target.value
+                        }))
+                    }}
+                />
+                <Input
+                    value={userData.lastName}
+                    id="lastName"
+                    type="text"
+                    label="Last Name"
+                    placeholder="Enter last name"
+                    alt={false}
+                    showFilter={false}
+                    onChange={(e) => {
+                        setUserData((prev) => ({
+                            ...prev,
+                            lastName: e.target.value
+                        }))
+                    }}
+                />
 
                 <Input
                     value={userData.address}

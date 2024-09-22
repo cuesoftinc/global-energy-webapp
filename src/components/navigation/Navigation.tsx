@@ -27,7 +27,9 @@ const Navigation: React.FC<NavigationProps> = ({ handleMenuToggle, toggleMenu })
                     </Link>
                 )}
                 <div className={toggleMenu ? styles.menu : styles.Newmenu}>
-                    <img onClick={handleMenuToggle} className={styles.menuIcon} src={menuIcon} alt="menu icon" />
+                    {!toggleMenu && (
+                        <img onClick={handleMenuToggle} className={styles.menuIcon} src={menuIcon} alt="menu icon" />
+                    )}
                     {renderHeader(splitPath)}
                 </div>
             </div>

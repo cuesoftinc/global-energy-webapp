@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import styles from "./SideBar.module.scss"
 import { links } from "./constant"
-import { Logo, logoutIcon } from "../../../public/assets"
+import { Logo, close, logoutIcon, menuIcon } from "../../../public/assets"
 import Cookies from "js-cookie"
 import toast from "react-hot-toast"
 import { postRequest } from "../../utils/apiClient"
@@ -10,13 +10,14 @@ import { useMutation } from "react-query"
 
 interface SideBarProps {
     toggleMenu: boolean;
-
+    handleMenuToggle: () => void,
 }
 
-const SideBar: React.FC<SideBarProps> = ({ toggleMenu }) => {
+const SideBar: React.FC<SideBarProps> = ({ toggleMenu, handleMenuToggle }) => {
     const nav = useNavigate()
     const location = useLocation();
     const [toggleCaret, setToggleCaret] = useState<number | null>(null)
+
 
 
     const handleToggle = (id: number) => {
@@ -27,13 +28,17 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu }) => {
         const base = import.meta.env.VITE_BASE_URL;
         const url = `${base}/auth/logout`;
         const response = await postRequest(url, { refreshToken });
+        // const response = api.post(`/auth/logout`, {
+        //     refreshToken
+        // })
         return response;
     }
 
     const { mutate: logout } = useMutation(logoutAPI, {
         onSuccess: (data) => {
             if (data?.message) {
-                toast.success(data.message)
+                // toast.success(data.response?.data?.message?.message)
+                // toast.success("Logout successfully")
                 Cookies.remove("glbATK")
                 Cookies.remove("glbRTK")
                 nav("/")
@@ -41,7 +46,7 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu }) => {
             }
         },
         onError: (error: any) => {
-            const errorMessage = error?.response?.data?.message || "Logout failed, Please try again"
+            const errorMessage = error?.response?.data?.message?.message || "Logout failed, Please try again"
             toast.error(errorMessage)
         }
     })
@@ -50,6 +55,11 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu }) => {
         const refreshToken = Cookies.get("glbRTK")
         if (refreshToken) {
             toast.loading("Logging out...")
+            setTimeout(() => {
+				toast.dismiss();
+				nav("/");
+				window.location.reload();
+			}, 1500);
             logout(refreshToken)
         } else {
             toast.error("No refresh token found.")
@@ -65,6 +75,8 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu }) => {
                         <p className={styles.logo}>
                             <img src={Logo} alt="logo" />
                         </p>
+                        <img onClick={handleMenuToggle} className={styles.menuIcon} src={toggleMenu ? menuIcon : close} alt="menu icon" />
+                        <img onClick={handleMenuToggle} className={styles.menuMobileIcon} src={toggleMenu ?  close : menuIcon} alt="menu icon" />
                     </Link>
                     <div className={styles.bottom}>
                         <section className={styles.navContainer}>

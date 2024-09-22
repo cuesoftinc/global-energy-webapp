@@ -34,7 +34,8 @@ const ForgetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive
     const { mutate, isLoading } = useMutation(passwordForgotten, {
         onSuccess: (data) => {
             if (data?.message) {
-                toast.success(data.message)
+                toast.success(data?.message)
+                console.log("frget", data)
                 setOverlay(false)
                 setOverlayText("")
                 setTimeout(() => {
@@ -45,7 +46,7 @@ const ForgetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive
         onError: (error: any) => {
             setOverlay(false);
             setOverlayText("");
-            const errorMessage = error?.response?.data?.message || "Something went wrong. Please try again.";
+            const errorMessage = error?.response?.data?.message?.message || "Something went wrong. Please try again.";
             toast.error(errorMessage);
         }
     })

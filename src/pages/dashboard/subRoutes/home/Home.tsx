@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { BlogPost } from "../../../../types";
 import { edit, trash } from "../../../../../public/assets";
 import api from "../../../../utils/interceptor";
+import { useToggleMenu } from "../../../../utils/useToggleMenu";
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
     const [searchQuery, setSearchQuery] = useState<string>('');
     const queryClient = useQueryClient();
     const nav = useNavigate()
+    const { toggleMenu } = useToggleMenu()
 
     const getBlogPost = async () => {
         const response = await api.get("/post")
@@ -58,7 +60,6 @@ const Home = () => {
         nav(`/dashboard/members-post/${id}`);
     };
 
-
     return (
         <main className={styles.main}>
             <div className={styles.inputContainer}>
@@ -70,7 +71,7 @@ const Home = () => {
                     className={styles.input}
                 />
             </div>
-            <div className={styles.blogContainer}>
+            <div className={toggleMenu ? styles.blogContainer : styles.newBlogContainer}>
                 {filteredPosts.length > 0 ? (
                     filteredPosts.map((post) => (
                         <div key={post._id} className={styles.blogDiv}>

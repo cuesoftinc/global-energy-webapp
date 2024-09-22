@@ -4,21 +4,32 @@ import toast from "react-hot-toast";
 import styles from "./Update.module.scss"
 import Input from "../../../../../components/input/Input";
 import Button from "../../../../../components/button/Button";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 
-const DeleteModal = () => {
+interface DeleteAccountModalProps {
+    userId: string | undefined
+    onCloseOverlay: () => void
+}
+
+const DeleteModal: React.FC<DeleteAccountModalProps> = ({ userId, onCloseOverlay }) => {
     const [password, setPassword] = useState("")
 
+    const navigate = useNavigate()
     const deleteUser = async ({ password }: { password: string }) => {
         try {
-            const response = await api.delete(`/user`, {
+            await api.delete(`/user/${userId}`, {
                 data: { password }
             });
-            console.log("User deleted:", response.data)
-            toast.success(response.data.message)
+            toast.success("User deleted successfully")
+            Cookies.remove("glbATK")
+            Cookies.remove("glbRTK")
+            onCloseOverlay()
+            navigate("/")
+            window.location.reload();
         } catch (error: any) {
-            console.error("Error deleting user:", error)
-            toast.error(error.response?.data?.message || "Error deleting user")
+            toast.error(error.response?.data?.message?.message || "Error deleting user")
         }
     }
     const handleDelete = (e: React.FormEvent) => {

@@ -19,8 +19,8 @@
       @media screen and (min-width: 1500px) {
         font-size: fn.rem(40);
       }
-      @media screen and (max-width: 414px) {
-        font-size: fn.rem(32);
+      @media screen and (max-width: 430px) {
+        font-size: fn.rem(24);
       }
     }
     .subtitle {
@@ -28,7 +28,7 @@
       color: $text-alt;
       margin-top: fn.rem(10);
       @media screen and (max-width: 430px){
-        font-size: fn.rem(16);
+        font-size: fn.rem(14);
       }
     }
     @media screen and (min-width: 1500px) {
@@ -54,7 +54,7 @@
       gap: fn.rem(10);
       .checkboxText {
         font-size: 18px;
-        @media screen and (max-width: 414px) {
+        @media screen and (max-width: 430px) {
           font-size: fn.rem(14);
         }
 
@@ -79,6 +79,9 @@
         text-align: center;
         font-size: fn.rem(17);
         font-weight: 500;
+        @media screen and (max-width: 430px) {
+          font-size: fn.rem(14);
+        }
         .span {
           font-weight: 500;
           cursor: pointer;
@@ -101,6 +104,9 @@
   font-size: fn.rem(16);
   color: #8a8a8a;
   font-weight: 500;
+  @media screen and (max-width: 430px) {
+    font-size: fn.rem(14);
+  }
 }
 
 .selectInput {
@@ -111,6 +117,9 @@
   padding: fn.rem(12);
   border-radius: fn.rem(6);
   border: 1px solid $border;
+  @media screen and (max-width: 430px) {
+    font-size: fn.rem(14);
+  }
 
   &:focus {
     border: 1px solid $text;

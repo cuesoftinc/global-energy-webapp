@@ -28,13 +28,15 @@ const ConfirmEmail = () => {
 
     const { mutate } = useMutation(emailConfirm, {
         onSuccess: (data) => {
-            if (data.message) {
-                toast.success("Email confirmed successfully!")
-                navigate("/")
+            if (data?.response?.status) {
+                toast.error(data?.response?.data?.message?.message, { duration: 5000 });
+                return
             }
+            toast.success("Confirmed successfully")
+            navigate("/")
         },
         onError: (error: any) => {
-            const erroMessage = error?.reponse?.data?.message || 'Something went wrong'
+            const erroMessage = error?.reponse?.data?.message?.message || 'Something went wrong'
             toast.error(erroMessage)
         }
     })

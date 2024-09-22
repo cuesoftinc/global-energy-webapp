@@ -45,25 +45,14 @@ const Login: React.FC<PROPS> = ({ setActive, setOverlay, setOverlayText }) => {
 
                 Cookies.set("glbATK", data.accessToken, { expires: exp });
                 Cookies.set("glbRTK", data?.refreshToken, { expires: exp })
-
                 setTimeout(() => {
                     setOverlay(false);
                     setOverlayText("");
                     nav("/dashboard");
                 }, 1500);
-            } else if (data?.message) {
+            } else if (data.response?.status) {
                 // Specific error handling for 'message'
-                toast.error(data.message);
-                setOverlay(false);
-                setOverlayText("");
-            } else if (data?.error) {
-                data.error.forEach((err: any) => {
-                    if (err.email) {
-                        toast.error("Invalid email address");
-                    } else if (err.Password) {
-                        toast.error("Invalid password");
-                    }
-                });
+                toast.error(data.response?.data?.message?.message);
                 setOverlay(false);
                 setOverlayText("");
             }

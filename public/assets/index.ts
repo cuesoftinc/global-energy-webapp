@@ -9,6 +9,7 @@ import caretDownIcon from "./icons/caret-down-icon.svg"
 import loadingBall from "./icons/loader-ball.svg"
 import loadingSpinner from "./icons/loadingSpinner.svg"
 import closeIcon from "./icons/close.svg"
+import close from "./icons/close-copy.svg"
 import dropDown from "./icons/arrow-down.svg"
 import Logo from "./logo.svg"
 import menuIcon from "./icons/menu-icon.svg"
@@ -44,4 +45,5 @@ export {
     profileIcon,
     closeEye,
     openEye,
+    close,
 }

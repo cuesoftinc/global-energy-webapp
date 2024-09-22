@@ -10,12 +10,13 @@ import useCurrentUser from "./useUser"
 
 
 
+
 const Profile = () => {
     const [showUpdateModal, setShowUpdateModal] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [showPasswordModal, setShowPasswordModal] = useState(false)
 
-    const {currentUser} = useCurrentUser()
+    const { currentUser } = useCurrentUser()
 
     const handleUpdateProfile = () => {
         setShowUpdateModal(true)
@@ -27,16 +28,17 @@ const Profile = () => {
         setShowDeleteModal(true)
     }
 
+
     return (
         <main className={styles.main}>
             <Overlay showOverlay={showUpdateModal} onCloseOverlay={() => setShowUpdateModal(false)}>
                 <UpdateAccountModal userId={currentUser?.id} onCloseOverlay={() => setShowUpdateModal(false)} />
             </Overlay>
             <Overlay showOverlay={showPasswordModal} onCloseOverlay={() => setShowPasswordModal(false)}>
-                <PasswordUpdateModal />
+                <PasswordUpdateModal onCloseOverlay={() => setShowPasswordModal(false)} />
             </Overlay>
             <Overlay showOverlay={showDeleteModal} onCloseOverlay={() => setShowDeleteModal(false)}>
-                <DeleteModal />
+                <DeleteModal userId={currentUser?.id} onCloseOverlay={() => setShowDeleteModal(false)} />
             </Overlay>
             <div className={styles.borderDiv}>
                 <div className={styles.titleDiv}>
