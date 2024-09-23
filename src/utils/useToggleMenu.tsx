@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
+
 type ToggleMenuProviderProps = {
     children: ReactNode
   };

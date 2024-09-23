@@ -1,0 +1,72 @@
+@use "../../scss/global/colors" as *;
+@use "../../scss/utils/functions" as fn;
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: fn.rem(30);
+  padding: fn.rem(18) fn.rem(20);
+  border-radius: fn.rem(6);
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  .top {
+    display: flex;
+    align-items: flex-start;
+    align-items: flex-start;
+    column-gap: fn.rem(24);
+    justify-content: space-between;
+
+    .iconDiv {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: $white;
+    }
+
+    .iconDiv.blue {
+      border: 1px solid #0E1C4D;
+    }
+
+    .iconDiv.orange {
+      border: 1px solid orange;
+    }
+
+    .iconDiv.green {
+      border: 1px solid green;
+    }
+
+    .title {
+      color: $dark-text;
+      font-size: fn.rem(15);
+      font-weight: 500;
+      width: 75%;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: fn.rem(6);
+
+    .value {
+      font-size: fn.rem(28);
+      font-weight: 700;
+      color: #252424;
+    }
+
+    .label {
+      color: $text;
+      font-size: fn.rem(14);
+      font-weight: 500;
+    }
+  }
+}

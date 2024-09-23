@@ -56,10 +56,10 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu, handleMenuToggle }) => {
         if (refreshToken) {
             toast.loading("Logging out...")
             setTimeout(() => {
-				toast.dismiss();
-				nav("/");
-				window.location.reload();
-			}, 1500);
+                toast.dismiss();
+                nav("/");
+                window.location.reload();
+            }, 1500);
             logout(refreshToken)
         } else {
             toast.error("No refresh token found.")
@@ -76,7 +76,7 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu, handleMenuToggle }) => {
                             <img src={Logo} alt="logo" />
                         </p>
                         <img onClick={handleMenuToggle} className={styles.menuIcon} src={toggleMenu ? menuIcon : close} alt="menu icon" />
-                        <img onClick={handleMenuToggle} className={styles.menuMobileIcon} src={toggleMenu ?  close : menuIcon} alt="menu icon" />
+                        <img onClick={handleMenuToggle} className={styles.menuMobileIcon} src={toggleMenu ? close : menuIcon} alt="menu icon" />
                     </Link>
                     <div className={styles.bottom}>
                         <section className={styles.navContainer}>
@@ -97,14 +97,16 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu, handleMenuToggle }) => {
                                         }}
                                     >
                                         <img className={styles.icon} src={item.icon} alt="icon" />
-                                        <p>{item.label}</p>
-                                        {item.icn && (
-                                            <img
-                                                src={item.icn}
-                                                alt="icon"
-                                                className={`${toggleCaret === item.id ? styles.iconUp : styles.iconDown}`}
-                                            />
-                                        )}
+                                        <div className={styles.caretIconDiv}>
+                                            <p>{item.label}</p>
+                                            {item.icn && (
+                                                <img
+                                                    src={item.icn}
+                                                    alt="icon"
+                                                    className={`${toggleCaret === item.id ? styles.iconUp : styles.iconDown}`}
+                                                />
+                                            )}
+                                        </div>
                                     </Link>
                                     {item.subItems && toggleCaret === item.id && (
                                         <div className={styles.subItems}>

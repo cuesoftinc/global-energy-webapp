@@ -1,0 +1,41 @@
+@use "../../../../../scss/global/colors" as *;
+@use "../../../../../scss/utils/functions" as fn;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(24);
+
+  .Container {
+    background-color: $background;
+    border: 1px solid $border;
+    border-radius: 8px;
+  }
+
+  tbody {
+    text-align: center;
+    color: $table-head;
+    font-weight: 400;
+    font-size: 16px;
+
+    tr:nth-child(even) {
+      background-color: $lighter-blue;
+    }
+
+    td {
+      padding: fn.rem(14);
+      cursor: pointer;
+
+      .button {
+        background-color: transparent;
+        cursor: pointer;
+      }
+    }
+    .customTD {
+      border-radius: 0 0 0 8px;
+    }
+    .customTD1 {
+      border-radius: 0 0 8px 0;
+    }
+  }
+}

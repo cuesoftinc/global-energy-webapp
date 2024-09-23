@@ -1,19 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
-import Button from "../../../components/button/Button";
-import Input from "../../../components/input/Input";
-import styles from "./SignUp.module.scss"
-import { postRequest } from "../../../utils/apiClient";
+import { postRequest } from "../../../../../utils/apiClient";
 import { useMutation } from "react-query";
 import toast from "react-hot-toast";
-import { checkEmail } from "../../../utils/emailChecker";
-import { validatePassword } from "../../../utils/passwordChecker";
-
-
-interface PROPS {
-    setActive: (value: React.SetStateAction<string>) => void;
-    setOverlayText: (value: React.SetStateAction<string>) => void;
-    setOverlay: (value: React.SetStateAction<boolean>) => void;
-}
+import { checkEmail } from "../../../../../utils/emailChecker";
+import { validatePassword } from "../../../../../utils/passwordChecker";
+import Input from "../../../../../components/input/Input";
+import Button from "../../../../../components/button/Button";
+import styles from "./AddUsers.module.scss"
 
 const initialState = {
     firstName: "",
@@ -25,11 +18,10 @@ const initialState = {
     accountType: "",
     password: "",
     confirmPassword: "",
-    checkbox: false
 }
 
 
-const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
+const AddUsers = () => {
     const [userData, setUserData] = useState(initialState)
     const [disabled, setDisabled] = useState(true);
     const [showPassword, setShowPassword] = useState(false)
@@ -37,8 +29,6 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
 
 
     const registerUser = async () => {
-        setOverlay(true)
-        setOverlayText("Please wait while we create your account...")
         const base = import.meta.env.VITE_BASE_URL
         const url = `${base}/auth/sign-up`
         const response = await postRequest(url, {
@@ -59,21 +49,12 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
         onSuccess: (data) => {
             if (data?.response?.status) {
                 toast.error(data?.response?.data?.message?.message, { duration: 5000 });
-                setOverlay(false);
-                setOverlayText("");
                 return
             }
             toast.success(data.message, { duration: 5000 });
-            setOverlay(false);
-            setOverlayText("");
-            setTimeout(() => {
-                setActive("verify");
-            }, 1500);
         },
         onError: (error: any) => {
             console.error("Error Response:", error);
-            setOverlay(false);
-            setOverlayText("");
         },
     });
 
@@ -105,7 +86,7 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
             userData.email.length > 0 &&
             userData.userName.length > 0 &&
             userData.password.length > 0 &&
-            userData.confirmPassword.length > 0 && userData.checkbox &&
+            userData.confirmPassword.length > 0 &&
             (userData.accountType === "individual" ||
                 userData.accountType === "family" ||
                 userData.accountType === "corporate")
@@ -119,7 +100,6 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
         userData.password,
         userData.confirmPassword,
         userData.accountType,
-        userData.checkbox
     ]);
 
 
@@ -138,8 +118,8 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
     return (
         <div className={styles.form}>
             <div className={styles.header}>
-                <h1 className={styles.head}>Create an Account</h1>
-                <span className={styles.subtitle}>Enter your personal details to create an account with us.</span>
+                <h1 className={styles.head}>ADD A NEW USER</h1>
+                <span className={styles.subtitle}>Enter personal details to add a new user.</span>
             </div>
             <form onSubmit={handleRegister} className={styles.formContent}>
                 <Input
@@ -284,17 +264,6 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                         }))
                     }}
                 />
-                <div>
-                    <label className={styles.checkbox}>
-                        <input type="checkbox" checked={userData.checkbox} onChange={(e) => {
-                            setUserData((prev) => ({
-                                ...prev,
-                                checkbox: e.target.checked
-                            }))
-                        }} />
-                        <p className={styles.checkboxText}>I agree and accept the <span className={styles.span}>terms and conditions</span></p>
-                    </label>
-                </div>
 
                 <div className={styles.buttonDiv}>
                     <Button
@@ -303,19 +272,12 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
                         disabled={disabled || isLoading}
                         className={styles.button}
                     >
-                        Create Account
+                        Create User
                     </Button>
-                    <p className={styles.signupLink}>
-                        Already have an account?
-                        <span onClick={() => setActive("")} className={styles.span}>
-                            {" "}
-                            Log In
-                        </span>
-                    </p>
                 </div>
             </form>
         </div>
     );
 };
 
-export default SignUp;
+export default AddUsers;

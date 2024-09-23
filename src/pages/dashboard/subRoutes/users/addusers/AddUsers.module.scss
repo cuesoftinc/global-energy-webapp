@@ -1,5 +1,5 @@
-@use "../../../scss/global/colors" as *;
-@use "../../../scss/utils/functions" as fn;
+@use "../../../../../scss/global/colors" as *;
+@use "../../../../../scss/utils/functions" as fn;
 
 .form {
   display: flex;
@@ -14,27 +14,23 @@
   .header {
     max-width: fn.rem(560);
     .head {
-      font-size: fn.rem(35);
+      font-size: fn.rem(20);
       color: $heading-bold;
-      @media screen and (min-width: 1500px) {
-        font-size: fn.rem(40);
-      }
       @media screen and (max-width: 430px) {
-        font-size: fn.rem(24);
+        font-size: fn.rem(16);
       }
     }
     .subtitle {
-      font-size: fn.rem(20);
+      font-size: fn.rem(16);
       color: $text-alt;
       margin-top: fn.rem(10);
-      @media screen and (max-width: 430px){
+      @media screen and (max-width: 430px) {
         font-size: fn.rem(14);
       }
     }
     @media screen and (min-width: 1500px) {
       max-width: fn.rem(800);
     }
-    
   }
   .formContent {
     display: flex;
@@ -48,23 +44,6 @@
       width: 100%;
     }
 
-    .checkbox {
-      display: flex;
-      flex-direction: row;
-      gap: fn.rem(10);
-      .checkboxText {
-        font-size: 18px;
-        @media screen and (max-width: 430px) {
-          font-size: fn.rem(14);
-        }
-
-        .span {
-          font-weight: 600;
-          color: $blue;
-        }
-      }
-    }
-
     .buttonDiv {
       display: flex;
       flex-direction: column;
@@ -74,20 +53,6 @@
         align-items: center;
         justify-content: center;
         margin-top: fn.rem(22);
-      }
-      .signupLink {
-        text-align: center;
-        font-size: fn.rem(17);
-        font-weight: 500;
-        @media screen and (max-width: 430px) {
-          font-size: fn.rem(14);
-        }
-        .span {
-          font-weight: 500;
-          cursor: pointer;
-          color: $blue;
-          text-decoration: underline;
-        }
       }
     }
   }

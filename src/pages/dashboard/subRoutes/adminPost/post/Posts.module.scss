@@ -1,5 +1,5 @@
-@use "../../../../scss/global/colors" as *;
-@use "../../../../scss/utils/functions" as fn;
+@use "../../../../../scss/global/colors" as *;
+@use "../../../../../scss/utils/functions" as fn;
 
 .main {
   display: flex;
@@ -44,8 +44,32 @@
       background-color: $dim-white;
       border: 1px solid $border;
       padding: fn.rem(12);
+    }
+
+    .selectInput {
+      width: 100%;
+      color: $text;
+      font-size: fn.rem(16);
+      background-color: $dim-white;
+      padding: fn.rem(12);
+      border-radius: fn.rem(6);
+      border: 1px solid $border;
       @media screen and (max-width: 430px) {
         font-size: fn.rem(14);
+      }
+
+      &:focus {
+        border: 1px solid $text;
+        outline: none;
+      }
+
+      &:active {
+        border: 1px solid $text;
+      }
+
+      &:focus-visible {
+        border-color: $text;
+        outline: none;
       }
     }
   }

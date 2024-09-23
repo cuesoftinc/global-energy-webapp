@@ -1,0 +1,62 @@
+@use "../../../../../scss/global/colors" as *;
+@use "../../../../../scss/utils/functions" as fn;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(24);
+
+  .Container {
+    background-color: $background;
+    border: 1px solid $border;
+    border-radius: 8px;
+  }
+
+  tbody {
+    text-align: left;
+    color: $table-head;
+    font-weight: 400;
+    font-size: 16px;
+
+    tr:nth-child(even) {
+      background-color: $lighter-blue;
+    }
+
+    td {
+      margin: fn.rem(10);
+      cursor: pointer;
+
+      .button {
+        background-color: transparent;
+        cursor: pointer;
+      }
+    }
+    .customTD1 {
+      width: 20%;
+      padding-left: fn.rem(10);
+      border-radius: 0 0 0 8px;
+    }
+    .customTD2 {
+      //   width: 30%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      max-height: calc(3 * 1.6em);
+    }
+    .customTD3 {
+      width: 20%;
+      text-align: center;
+    }
+    .customTD4 {
+      width: 20%;
+      text-align: center;
+    }
+    .customTD5 {
+      border-radius: 0 0 8px 0;
+      width: 10%;
+      text-align: center;
+    }
+  }
+}
