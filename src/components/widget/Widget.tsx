@@ -15,9 +15,9 @@ const Widget: React.FC<PROPS> = ({ title, icon, value, label }) => {
 			case "Users":
 				return styles.blue;
 			case "Post":
+				return styles.purple;
+			case "Subscribed users":
 				return styles.green;
-			case "Pending":
-				return styles.orange;
 			default:
 				return "";
 		}

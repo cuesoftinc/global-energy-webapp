@@ -1,5 +1,6 @@
 import { useState } from "react"
 import styles from "./Subscribe.module.scss"
+// import { Flutterwave, closePaymentModal } from "@flutterwave/flutterwave-js";
 
 const Subscribe = () => {
     const [selected, setSelected] = useState("monthly")
@@ -7,7 +8,6 @@ const Subscribe = () => {
     const handleOptionChange = (option: string) => {
         setSelected(option)
     }
-
     return (
         <main className={styles.main}>
             <div className={styles.btnWrapper}>

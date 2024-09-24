@@ -34,3 +34,16 @@ export interface User {
     updatedAt: string,
 }
 
+export interface UserData {
+    firstName: string;
+    lastName: string;
+    email: string;
+    userName: string;
+    address: string;
+    phoneNumber: string;
+    accountType: string;
+    password: string;
+    confirmPassword: string;
+}
+
+

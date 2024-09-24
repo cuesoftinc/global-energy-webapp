@@ -42,9 +42,9 @@ export const links = [
         label: "Posts",
         icn: caretDownIcon,
         subItems: [
-            { id: 0, label: "Create new post", to: "/dashboard/post/admin-create" },
+            // { id: 0, label: "Create new post", to: "/dashboard/post/admin-create" },
             { id: 1, label: "View all posts", to: "/dashboard/post/admin-view" },
-            { id: 2, label: "View Pending Posts", to: "/dashboard/post/admin-pending" },
+            // { id: 2, label: "View Pending Posts", to: "/dashboard/post/admin-pending" },
         ]
     },
     {

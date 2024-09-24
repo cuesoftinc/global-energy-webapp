@@ -1,6 +1,7 @@
-import { optionIcon } from "../../../../../../public/assets"
-import Input from "../../../../../components/input/Input"
-import TableComponent from "../../../../../components/table/TableComponent"
+
+import { optionIcon } from "../../../../../../../public/assets"
+import Input from "../../../../../../components/input/Input"
+import TableComponent from "../../../../../../components/table/TableComponent"
 import styles from "./Viewusers.module.scss"
 
 

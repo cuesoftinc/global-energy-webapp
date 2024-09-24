@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
-import { postRequest } from "../../../../../utils/apiClient";
 import { useMutation } from "react-query";
 import toast from "react-hot-toast";
-import { checkEmail } from "../../../../../utils/emailChecker";
-import { validatePassword } from "../../../../../utils/passwordChecker";
-import Input from "../../../../../components/input/Input";
-import Button from "../../../../../components/button/Button";
 import styles from "./AddUsers.module.scss"
+import { checkEmail } from "../../../../../../utils/emailChecker";
+import { validatePassword } from "../../../../../../utils/passwordChecker";
+import Input from "../../../../../../components/input/Input";
+import Button from "../../../../../../components/button/Button";
+import api from "../../../../../../utils/interceptor";
+import { UserData } from "../../../../../../types";
 
 const initialState = {
     firstName: "",
@@ -28,10 +29,8 @@ const AddUsers = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
 
-    const registerUser = async () => {
-        const base = import.meta.env.VITE_BASE_URL
-        const url = `${base}/auth/sign-up`
-        const response = await postRequest(url, {
+    const registerUser = async (userData : UserData) => {
+        const response = await api.post("/auth/sign-up",{ 
             firstName: userData.firstName.trim(),
             lastName: userData.lastName.trim(),
             email: userData.email.trim(),
@@ -47,12 +46,13 @@ const AddUsers = () => {
 
     const { mutate, isLoading } = useMutation(registerUser, {
         onSuccess: (data) => {
-            if (data?.response?.status) {
-                toast.error(data?.response?.data?.message?.message, { duration: 5000 });
+            if (data.status !== 200) {
+                toast.error(data?.data?.message?.message, { duration: 5000 });
                 return
             }
-            toast.success(data.message, { duration: 5000 });
+            toast.success("User created successfully!", { duration: 5000 })
         },
+
         onError: (error: any) => {
             console.error("Error Response:", error);
         },
@@ -75,7 +75,7 @@ const AddUsers = () => {
                 toast.error("password do not match")
                 return
             }
-            mutate()
+            mutate(userData)
         },
         [mutate, userData]
     )

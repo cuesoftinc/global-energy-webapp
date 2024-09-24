@@ -28,6 +28,7 @@ import optionIcon from "./icons/options.svg"
 import adminPostIcon from "./icons/adminpost-icon.svg"
 import usersCopy from "./icons/users-copy.svg"
 import exclmIcon from "./icons/exclamation.svg"
+import checkedIcon from "./icons/check.svg"
 
 export {
     homeIcon,
@@ -60,4 +61,5 @@ export {
     usersCopy,
     postIconCopy,
     exclmIcon,
+    checkedIcon
 }

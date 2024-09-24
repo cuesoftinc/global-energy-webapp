@@ -1,11 +1,11 @@
-import { optionIcon } from "../../../../../../public/assets"
-import Input from "../../../../../components/input/Input"
-import TableComponent from "../../../../../components/table/TableComponent"
-import styles from "./View.module.scss"
+
+import { optionIcon } from "../../../../../../../public/assets"
+import Input from "../../../../../../components/input/Input"
+import TableComponent from "../../../../../../components/table/TableComponent"
+import styles from "./Pending.module.scss"
 
 
-
-const ViewPosts = () => {
+const PendingPosts = () => {
     const headings = ["Title", "Slug", "Account Type", "Post Date & Time", "Action"]
 
     const tableBody = (
@@ -30,7 +30,7 @@ const ViewPosts = () => {
                 id="firstName"
                 type="text"
                 label=""
-                placeholder="Search posts"
+                placeholder="Search pending posts"
                 alt={false}
                 showFilter={false}
                 onChange={() => { }}
@@ -45,4 +45,4 @@ const ViewPosts = () => {
     )
 }
 
-export default ViewPosts
+export default PendingPosts

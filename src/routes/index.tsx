@@ -1,18 +1,18 @@
-import PendingPosts from "../pages/dashboard/subRoutes/adminPost/pending/PendingPost";
-import AdminPost from "../pages/dashboard/subRoutes/adminPost/post/Post";
-import ViewPosts from "../pages/dashboard/subRoutes/adminPost/view/ViewPosts";
+import PendingPosts from "../pages/dashboard/subRoutes/admin/adminPost/pending/PendingPost";
+import AdminPost from "../pages/dashboard/subRoutes/admin/adminPost/post/Post";
+import ViewPosts from "../pages/dashboard/subRoutes/admin/adminPost/view/ViewPosts";
+import Overview from "../pages/dashboard/subRoutes/admin/overview";
+import AddUsers from "../pages/dashboard/subRoutes/admin/users";
+import ViewUsers from "../pages/dashboard/subRoutes/admin/users/viewusers/ViewUsers";
 import Contact from "../pages/dashboard/subRoutes/contact";
 import FAQ from "../pages/dashboard/subRoutes/faq";
 import Home from "../pages/dashboard/subRoutes/home";
 import ViewPost from "../pages/dashboard/subRoutes/home/ViewPost";
-import Overview from "../pages/dashboard/subRoutes/overview";
 import PostContent from "../pages/dashboard/subRoutes/post-content";
 import Create from "../pages/dashboard/subRoutes/power-management";
 import Profile from "../pages/dashboard/subRoutes/profile";
 import Subscribe from "../pages/dashboard/subRoutes/subscribe";
-import AddUsers from "../pages/dashboard/subRoutes/users";
-import Users from "../pages/dashboard/subRoutes/users";
-import ViewUsers from "../pages/dashboard/subRoutes/users/viewusers/ViewUsers";
+
 
 
 
