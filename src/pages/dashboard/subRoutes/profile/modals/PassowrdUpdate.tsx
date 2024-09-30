@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Input from "../../../../../components/input/Input"
-import styles from "./Update.module.scss"
+import styles from "./updateModal/Update.module.scss"
 import api from "../../../../../utils/interceptor"
 import { useMutation } from "react-query"
 import toast from "react-hot-toast"

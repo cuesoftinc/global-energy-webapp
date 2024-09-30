@@ -1,10 +1,10 @@
 import { useCallback, useState } from "react";
-import Input from "../../../components/input/Input"
+import Input from "../../../../components/input/Input"
 import styles from "./ForgotPassword.module.scss"
-import { postRequest } from "../../../utils/apiClient";
+import { postRequest } from "../../../../utils/apiClient";
 import { useMutation } from "react-query";
 import toast from "react-hot-toast";
-import Button from "../../../components/button/Button";
+import Button from "../../../../components/button/Button";
 
 
 interface PROPS {

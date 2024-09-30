@@ -5,9 +5,9 @@ import Auth from "../src/pages/auth/Auth"
 import Dashboard from "./pages/dashboard/Dashboard"
 import { toastOptions } from "./utils/toastOptions"
 import { QueryClient, QueryClientProvider } from "react-query"
-import ConfirmEmail from "./pages/auth/subComponents/ConfirmEmail"
-import ResetPassword from "./pages/auth/subComponents/ResetPassword"
+import ResetPassword from "./pages/auth/subComponents/resetPassword/ResetPassword"
 import useTokenRefresh from "./hook/useTokenRefresh"
+import ConfirmEmail from "./pages/auth/subComponents/confirmEmail/ConfirmEmail"
 const queryClient = new QueryClient()
 
 const { dashboardSubRoutes } = Routes()

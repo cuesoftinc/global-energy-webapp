@@ -10,8 +10,8 @@
     display: flex;
     flex-direction: row;
     column-gap: fn.rem(1);
-    text-decoration: underline;
     cursor: pointer;
+    
     .back {
       color: $blue;
       font-weight: 600;
@@ -34,7 +34,7 @@
       top: 50px;
       right: 200px;
     }
-  
+
     .pattern {
       position: absolute;
       top: 250px;
@@ -43,7 +43,11 @@
       width: 350px;
       opacity: 10%;
       border-radius: 50%;
-      background-image: repeating-radial-gradient(  #fff 80%,#E3E8F0 90%,#fff 90%);
+      background-image: repeating-radial-gradient(
+        #fff 80%,
+        #e3e8f0 90%,
+        #fff 90%
+      );
     }
     @media screen and (max-width: 540px) {
       display: none;

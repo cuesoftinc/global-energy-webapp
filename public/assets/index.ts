@@ -29,6 +29,9 @@ import adminPostIcon from "./icons/adminpost-icon.svg"
 import usersCopy from "./icons/users-copy.svg"
 import exclmIcon from "./icons/exclamation.svg"
 import checkedIcon from "./icons/check.svg"
+import checkedIconCopy from "./icons/check-copy.svg"
+import backIconCopy from "./icons/arrow-left-copy.svg" 
+import authImg from "./auth-img.svg"
 
 export {
     homeIcon,
@@ -61,5 +64,8 @@ export {
     usersCopy,
     postIconCopy,
     exclmIcon,
-    checkedIcon
+    checkedIcon,
+    checkedIconCopy,
+    backIconCopy,
+    authImg
 }

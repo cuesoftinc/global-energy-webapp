@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import styles from "./SideBar.module.scss"
-import { links } from "./constant"
+import { getLinksForRole } from "./constant"
 import { Logo, close, logoutIcon, menuIcon } from "../../../public/assets"
 import Cookies from "js-cookie"
 import toast from "react-hot-toast"
@@ -11,9 +11,10 @@ import { useMutation } from "react-query"
 interface SideBarProps {
     toggleMenu: boolean;
     handleMenuToggle: () => void,
+    userRole: string
 }
 
-const SideBar: React.FC<SideBarProps> = ({ toggleMenu, handleMenuToggle }) => {
+const SideBar: React.FC<SideBarProps> = ({ toggleMenu, handleMenuToggle, userRole }) => {
     const nav = useNavigate()
     const location = useLocation();
     const [toggleCaret, setToggleCaret] = useState<number | null>(null)
@@ -67,6 +68,7 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu, handleMenuToggle }) => {
         }
     }
 
+    const sideBarLinks = getLinksForRole(userRole)
     return (
         <>
             {toggleMenu && (
@@ -80,7 +82,7 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu, handleMenuToggle }) => {
                     </Link>
                     <div className={styles.bottom}>
                         <section className={styles.navContainer}>
-                            {links.map((item) => (
+                            {sideBarLinks.map((item) => (
                                 <div key={item.id} className={styles.itemDiv}>
                                     <Link
                                         to={item.to}

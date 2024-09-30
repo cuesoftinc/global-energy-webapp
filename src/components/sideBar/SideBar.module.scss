@@ -24,6 +24,14 @@
       padding-top: fn.rem(17);
       padding-bottom: fn.rem(18);
     }
+    @media screen and (max-width: 920px) {
+      padding-top: fn.rem(12);
+      padding-bottom: fn.rem(13);
+    }
+    @media screen and (max-width: 450px) {
+      padding-top: fn.rem(16);
+      padding-bottom: fn.rem(17);
+    }
 
     .logo {
       width: 200px;

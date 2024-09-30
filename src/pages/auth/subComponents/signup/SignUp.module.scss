@@ -1,5 +1,5 @@
-@use "../../../scss/global/colors" as *;
-@use "../../../scss/utils/functions" as fn;
+@use "../../../../scss/global/colors" as *;
+@use "../../../../scss/utils/functions" as fn;
 
 .form {
   display: flex;
@@ -53,7 +53,7 @@
       flex-direction: row;
       gap: fn.rem(10);
       .checkboxText {
-        font-size: 18px;
+        font-size: 16px;
         @media screen and (max-width: 430px) {
           font-size: fn.rem(14);
         }
@@ -77,7 +77,7 @@
       }
       .signupLink {
         text-align: center;
-        font-size: fn.rem(17);
+        font-size: fn.rem(15);
         font-weight: 500;
         @media screen and (max-width: 430px) {
           font-size: fn.rem(14);
@@ -86,7 +86,11 @@
           font-weight: 500;
           cursor: pointer;
           color: $blue;
-          text-decoration: underline;
+          display: inline;
+          border-bottom: 2px solid $white;
+          &:hover {
+            border-bottom: 2px solid $blue;
+          }
         }
       }
     }

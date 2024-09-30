@@ -1,6 +1,6 @@
-import { adminPostIcon, bellIcon, caretDownIcon, dashboardIcon, manageIcon, overviewIcon, postIcon, profileIcon, usersIcon } from "../../../public/assets"
+import { adminPostIcon, bellIcon, caretDownIcon, checkedIconCopy, dashboardIcon, manageIcon, overviewIcon, postIcon, profileIcon, usersIcon } from "../../../public/assets"
 
-export const links = [
+const links = [
     {
         id: 0,
         to: "/dashboard",
@@ -37,6 +37,16 @@ export const links = [
     },
     {
         id: 5,
+        to: "/dashboard/subscription",
+        icon: checkedIconCopy,
+        label: "Subscriptions",
+        icn: caretDownIcon,
+        subItems: [
+            { id: 1, label: "View All Subscription", to: "/dashboard/view-all-subscription" }
+        ]
+    },
+    {
+        id: 6,
         to: "",
         icon: adminPostIcon,
         label: "Posts",
@@ -48,7 +58,7 @@ export const links = [
         ]
     },
     {
-        id: 6,
+        id: 7,
         to: "",
         icon: usersIcon,
         label: "Users",
@@ -59,9 +69,20 @@ export const links = [
         ]
     },
     {
-        id: 7,
+        id: 8,
         to: "/dashboard/user-profile",
         icon: profileIcon,
         label: "Profile",
     },
 ]
+
+
+const getLinksForRole = (role: string) => {
+    if (role === "admin") {
+        return links;
+    } else {
+        return links.filter((_, index) => [0, 1, 2, 3, 8].includes(index));
+    }
+}
+
+export { getLinksForRole }

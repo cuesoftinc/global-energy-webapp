@@ -1,4 +1,4 @@
-import { envelope } from "../../../../public/assets";
+import { envelope } from "../../../../../public/assets";
 import styles from "./Verify.module.scss"
 
 

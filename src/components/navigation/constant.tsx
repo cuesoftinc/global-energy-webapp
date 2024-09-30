@@ -1,4 +1,5 @@
 export const renderHeader = (splitPath: Array<string>) => {
+    
     switch (true) {
         case splitPath[splitPath.length - 1] === "dashboard":
             return "Dashboard";
@@ -30,8 +31,17 @@ export const renderHeader = (splitPath: Array<string>) => {
         case splitPath[splitPath.length - 1] === "view-all-users":
             return "View All Users"
             break;
-        case splitPath[splitPath.length - 1] === "user-profile":
-            return "Profile"
+        case splitPath[splitPath.length - 1] === "view-all-subscription":
+            return "View All Subscription"
+            break;
+            case splitPath[splitPath.length - 1] === "user-profile":
+            return "My Profile"
+            break;
+            case splitPath.length === 4 && splitPath[2] === "user-profile":
+            return "User Profile"
+            break;
+            case splitPath.length === 4 && splitPath[2] === "members-post":
+            return "Update Post"
             break;
         case splitPath[splitPath.length - 1] === "faq":
             return "Frequently Asked Questions"

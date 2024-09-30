@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from "react";
-import { postRequest } from "../../../utils/apiClient";
+import { postRequest } from "../../../../utils/apiClient";
 import { useMutation } from "react-query";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Logo } from "../../../../public/assets";
+import { Logo } from "../../../../../public/assets";
 import styles from "./ConfirmEmail.module.scss"
 
 

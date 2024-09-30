@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Login from "./subComponents/Login"
-import SignUp from "./subComponents/SignUp";
+import SignUp from "./subComponents/signup/SignUp";
 import styles from "./Auth.module.scss"
-import { Logo } from "../../../public/assets";
+import { Logo, authImg } from "../../../public/assets";
 import LoadingScreen from "../../components/loadingScreen/LoadingScreen";
-import ForgetPassword from "./subComponents/ForgetPassword";
 import ProtectedRoute from "../../components/protectedRoutes/ProtectedRoute";
-import Verify from "./subComponents/Verify";
+import Verify from "./subComponents/verify/Verify";
+import ForgetPassword from "./subComponents/forgotPassword/ForgetPassword";
+import Login from "./subComponents/login/Login";
 
 interface AuthProps {
     children?: React.ReactNode;
@@ -58,7 +58,7 @@ const Auth: React.FC<AuthProps> = ({ children }) => {
                 </section>
 
                 <section className={styles.right}>
-                    <img src="" alt="authImage" className={styles.authImg} />
+                    <img src={authImg} alt="authImage" className={styles.authImg} />
                 </section>
             </main>
         </ProtectedRoute>

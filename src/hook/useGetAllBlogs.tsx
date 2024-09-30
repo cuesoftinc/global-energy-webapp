@@ -1,14 +1,14 @@
 import toast from "react-hot-toast"
 import api from "../utils/interceptor"
-import { BlogPost } from "../types";
-import { useState } from "react";
 import { useQuery } from "react-query";
+import useDashboardStore from "../store/DashboardStore";
 
 const useGetAllBlogs = (page: number, perPage: number) => {
-    const [posts, setPosts] = useState<BlogPost[]>([])
-    const [totalPages, setTotalPages] = useState<number>(0)
-    const [totalItems, setTotalItems] = useState<number>(0)
-
+    const { setPosts, setTotalItems, setTotalPages } = useDashboardStore()
+    const posts = useDashboardStore((state) => state.posts)
+    const totalItems = useDashboardStore((state) => state.totalItems)
+    const totalPages = useDashboardStore((state) => state.totalPages)
+    
 
     const getBlogPost = async () => {
         const response = await api.get("/post", {
@@ -25,10 +25,11 @@ const useGetAllBlogs = (page: number, perPage: number) => {
         },
         onError: () => {
             toast.error("error fetching data")
-        }
+        },
+        refetchOnWindowFocus: false
     })
 
-    return { posts, refetch, totalPages, totalItems, isLoading}
+    return { posts, refetch, totalPages, totalItems, isLoading }
 }
 
 export default useGetAllBlogs

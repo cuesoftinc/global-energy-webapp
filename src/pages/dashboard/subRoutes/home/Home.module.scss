@@ -60,7 +60,6 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 8px;
-
   }
   .contentDiv {
     padding: 12px;
@@ -147,8 +146,12 @@
       color: $blue;
       font-size: 14px;
       font-weight: 600;
-      text-decoration: underline;
       cursor: pointer;
+      display: inline;
+      border-bottom: 2px solid $white;
+      &:hover {
+        border-bottom: 2px solid $blue;
+      }
     }
   }
 
@@ -188,5 +191,45 @@
   .input:focus {
     border: 1px solid $text;
   }
-}
 
+  .paginationContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: fn.rem(12);
+    padding: fn.rem(8) fn.rem(14);
+    background-color: $blue;
+    border-radius: 8px;
+    color: $white;
+
+    .prevBtn {
+      background-color: transparent;
+      cursor: pointer;
+      color: white;
+      display: inline;
+      border-bottom: 2px solid $blue;
+      &:not(:disabled):hover {
+        border-bottom: 2px solid $white;
+      }
+      &:disabled {
+        color: lightgray;
+        cursor: not-allowed;
+      }
+    }
+    .nextBtn {
+      background-color: transparent;
+      cursor: pointer;
+      color: white;
+      display: inline;
+      border-bottom: 2px solid $blue;
+      &:not(:disabled):hover {
+        border-bottom: 2px solid $white;
+      }
+      &:disabled {
+        color: lightgray;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

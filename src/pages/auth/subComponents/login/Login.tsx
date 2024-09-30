@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../../../components/button/Button";
-import Input from "../../../components/input/Input";
+import Button from "../../../../components/button/Button";
+import Input from "../../../../components/input/Input";
 import styles from "./Login.module.scss"
 import { useCallback, useEffect, useState } from "react";
-import { postRequest } from "../../../utils/apiClient";
+import { postRequest } from "../../../../utils/apiClient";
 import { useMutation } from "react-query";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
@@ -33,6 +33,7 @@ const Login: React.FC<PROPS> = ({ setActive, setOverlay, setOverlayText }) => {
         const base = import.meta.env.VITE_BASE_URL;
         const url = `${base}/auth/sign-in`
         const response = await postRequest(url, userData)
+        console.log("data", response)
         return response
     }
 
@@ -42,9 +43,10 @@ const Login: React.FC<PROPS> = ({ setActive, setOverlay, setOverlayText }) => {
                 // Successful login
                 const exp = new Date(new Date().getTime() + 120 * 60 * 1000);
                 toast.success("Login successful!"), { duration: 5000 };
-
+                console.log("data", data)
                 Cookies.set("glbATK", data.accessToken, { expires: exp });
                 Cookies.set("glbRTK", data?.refreshToken, { expires: exp })
+                Cookies.set("userRole", data.user.role);
                 setTimeout(() => {
                     setOverlay(false);
                     setOverlayText("");
@@ -127,10 +129,9 @@ const Login: React.FC<PROPS> = ({ setActive, setOverlay, setOverlayText }) => {
                             }))
                         }}
                     />
-                    <p onClick={() => setActive("forgotPassword")} className={styles.forgotPassword}>
-                        {" "}
-                        Forgot password?
-                    </p>
+                    <div onClick={() => setActive("forgotPassword")} className={styles.forgotPassword}>
+                        <p className={styles.forgotText}>Forgot password?</p>
+                    </div>
                 </div>
 
                 <div className={styles.buttonDiv}>

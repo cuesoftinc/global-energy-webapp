@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
-import Button from "../../../components/button/Button";
-import Input from "../../../components/input/Input";
+import Button from "../../../../components/button/Button";
+import Input from "../../../../components/input/Input";
 import styles from "./SignUp.module.scss"
-import { postRequest } from "../../../utils/apiClient";
+import { postRequest } from "../../../../utils/apiClient";
 import { useMutation } from "react-query";
 import toast from "react-hot-toast";
-import { checkEmail } from "../../../utils/emailChecker";
-import { validatePassword } from "../../../utils/passwordChecker";
+import { checkEmail } from "../../../../utils/emailChecker";
+import { validatePassword } from "../../../../utils/passwordChecker";
 
 
 interface PROPS {

@@ -1,10 +1,10 @@
 import { useState } from "react"
-import Input from "../../../../../components/input/Input"
+import Input from "../../../../../../components/input/Input"
 import styles from "./Update.module.scss"
-import api from "../../../../../utils/interceptor"
+import api from "../../../../../../utils/interceptor"
 import { useMutation, useQueryClient } from "react-query"
 import toast from "react-hot-toast"
-import Button from "../../../../../components/button/Button"
+import Button from "../../../../../../components/button/Button"
 
 
 interface UpdateAccountModalProps {

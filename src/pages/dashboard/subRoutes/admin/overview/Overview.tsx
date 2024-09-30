@@ -1,11 +1,13 @@
+import DoubleBar from "./bottomSection/DoubleBar";
 import TopSection from "./topsection/TopSection";
-
+import styles from "./Overview.module.scss"
 
 
 const Overview = () => {
     return (
-        <div>
+        <div className={styles.main}>
             <TopSection />
+            <DoubleBar />
         </div>
     )
 }

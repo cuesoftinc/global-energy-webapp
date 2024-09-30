@@ -1,5 +1,5 @@
-@use "../../../scss/global/colors" as *;
-@use "../../../scss/utils/functions" as fn;
+@use "../../../../scss/global/colors" as *;
+@use "../../../../scss/utils/functions" as fn;
 
 .form {
   display: flex;
@@ -20,9 +20,8 @@
     }
     .subtitle {
       font-size: fn.rem(20);
-      // color: $text-alt;
       margin-top: fn.rem(10);
-      @media screen and (max-width: 430px){
+      @media screen and (max-width: 430px) {
         font-size: fn.rem(14);
       }
     }
@@ -30,11 +29,28 @@
       max-width: fn.rem(800);
     }
   }
-
   .formContent {
     display: flex;
     flex-direction: column;
     gap: fn.rem(20);
+
+    .forgotDiv {
+      display: flex;
+      flex-direction: column;
+      gap: fn.rem(10);
+      .forgotPassword {
+        .forgotText {
+          color: $blue;
+          cursor: pointer;
+          font-size: fn.rem(14);
+          border-bottom: 2px solid $white;
+          display: inline;
+          &:hover {
+            border-bottom: 2px solid $blue;
+          }
+        }
+      }
+    }
 
     .buttonDiv {
       display: flex;
@@ -48,7 +64,7 @@
       }
       .signupLink {
         text-align: center;
-        font-size: fn.rem(17);
+        font-size: fn.rem(15);
         font-weight: 500;
         @media screen and (max-width: 430px) {
           font-size: fn.rem(14);
@@ -57,7 +73,11 @@
           font-weight: 500;
           cursor: pointer;
           color: $blue;
-          text-decoration: underline;
+          border-bottom: 2px solid $white;
+          display: inline;
+          &:hover {
+            border-bottom: 2px solid $blue;
+          }
         }
       }
     }

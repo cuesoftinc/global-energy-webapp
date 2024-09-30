@@ -1,19 +1,21 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { renderHeader } from "./constant";
-import { Logo, menuIcon, userIcon } from "../../../public/assets";
+import { Logo, backIconCopy, menuIcon, userIcon } from "../../../public/assets";
 import styles from "./Navigation.module.scss"
-import useCurrentUser from "../../pages/dashboard/subRoutes/profile/useUser";
+import useCurrentUser from "../../hook/useCurrentUser";
 
 
 interface NavigationProps {
     handleMenuToggle: () => void,
-    toggleMenu: boolean
+    toggleMenu: boolean,
+    userRole: string,
 }
 
-const Navigation: React.FC<NavigationProps> = ({ handleMenuToggle, toggleMenu }) => {
+const Navigation: React.FC<NavigationProps> = ({ handleMenuToggle, toggleMenu, userRole }) => {
     const location = useLocation()
     const splitPath = location.pathname.split("/")
-
+    const currentLocation = location.pathname.startsWith("/dashboard/user-profile/") || location.pathname.startsWith("/dashboard/members-post/")
+    const nav = useNavigate()
     const { currentUser } = useCurrentUser();
 
     return (
@@ -30,6 +32,8 @@ const Navigation: React.FC<NavigationProps> = ({ handleMenuToggle, toggleMenu })
                     {!toggleMenu && (
                         <img onClick={handleMenuToggle} className={styles.menuIcon} src={menuIcon} alt="menu icon" />
                     )}
+
+                    {currentLocation && userRole === "admin" && <img className={styles.arrowLeft} onClick={() => nav(-1)} src={backIconCopy} alt="arrow icon" />}
                     {renderHeader(splitPath)}
                 </div>
             </div>

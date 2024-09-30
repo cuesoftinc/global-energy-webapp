@@ -2,6 +2,8 @@ import PendingPosts from "../pages/dashboard/subRoutes/admin/adminPost/pending/P
 import AdminPost from "../pages/dashboard/subRoutes/admin/adminPost/post/Post";
 import ViewPosts from "../pages/dashboard/subRoutes/admin/adminPost/view/ViewPosts";
 import Overview from "../pages/dashboard/subRoutes/admin/overview";
+import UserProfile from "../pages/dashboard/subRoutes/admin/profile/UserProfile";
+import Subscription from "../pages/dashboard/subRoutes/admin/subscription/Subscription";
 import AddUsers from "../pages/dashboard/subRoutes/admin/users";
 import ViewUsers from "../pages/dashboard/subRoutes/admin/users/viewusers/ViewUsers";
 import Contact from "../pages/dashboard/subRoutes/contact";
@@ -65,11 +67,19 @@ const Routes = () => {
         },
         {
             path: "/dashboard/view-all-users",
-            element: <ViewUsers/>,
+            element: <ViewUsers />,
         },
         {
-            path: "/dashboard/user-profile",
+            path: "/dashboard/view-all-subscription",
+            element: <Subscription />,
+        },
+        {
+            path: "/dashboard/user-profile/",
             element: <Profile />,
+        },
+        {
+            path: "/dashboard/user-profile/:id",
+            element: <UserProfile />
         },
         {
             path: "/dashboard/faq",

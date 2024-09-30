@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { postRequest } from "../../../utils/apiClient";
+import { postRequest } from "../../../../utils/apiClient";
 import { useMutation } from "react-query";
 import toast from "react-hot-toast";
 import styles from "./ResetPassword.module.scss"
-import Input from "../../../components/input/Input";
-import Button from "../../../components/button/Button";
+import Input from "../../../../components/input/Input";
+import Button from "../../../../components/button/Button";
 import { useLocation, useNavigate } from 'react-router-dom';
 
 

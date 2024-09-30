@@ -1,7 +1,7 @@
 import { useState } from "react"
 import api from "../../../../../utils/interceptor"
 import toast from "react-hot-toast";
-import styles from "./Update.module.scss"
+import styles from "./updateModal/Update.module.scss"
 import Input from "../../../../../components/input/Input";
 import Button from "../../../../../components/button/Button";
 import { useNavigate } from "react-router-dom";

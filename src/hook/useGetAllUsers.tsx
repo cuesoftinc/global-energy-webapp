@@ -1,20 +1,21 @@
 import toast from "react-hot-toast"
 import api from "../utils/interceptor"
-import { User } from "../types";
-import { useState } from "react";
 import { useQuery } from "react-query";
+import useUsersStore from "../store/UserStore";
 
-const useGetAllUsers = () => {
-    const [users, setUsers] = useState<User[]>([]);
+const useGetAllUsers = (page: number, perPage: number) => {
+    const { setUsers, setTotalPages, setTotalItems } = useUsersStore();
 
     const getAllUsers = async () => {
-        const response = await api.get("/user")
-        console.log("response", response)
+        const response = await api.get("/user", {
+            params: { page, perPage }
+        })
+        setTotalPages(response.data.totalPages)
+        setTotalItems(response.data.totalItems)
         return response.data.data
     }
-    useQuery("getAllUsers", getAllUsers, {
+    const {isLoading } = useQuery("getAllUsers", getAllUsers, {
         onSuccess: (data) => {
-            console.log("data", data)
             setUsers(data);
         },
         onError: () => {
@@ -22,7 +23,7 @@ const useGetAllUsers = () => {
         }
     })
 
-    return { users }
+    return { isLoading, ...useUsersStore() }
 }
 
 export default useGetAllUsers

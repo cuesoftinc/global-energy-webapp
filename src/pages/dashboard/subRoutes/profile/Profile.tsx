@@ -3,10 +3,10 @@ import Button from "../../../../components/button/Button"
 import Overlay from "../../../../components/overlay/OverlayComponent"
 import CurrentUser from "./CurrentUser"
 import styles from "./Profile.module.scss"
-import UpdateAccountModal from "./modals/UpdateModal"
 import DeleteModal from "./modals/DeleteModal"
 import PasswordUpdateModal from "./modals/PassowrdUpdate"
-import useCurrentUser from "./useUser"
+import useCurrentUser from "../../../../hook/useCurrentUser"
+import UpdateAccountModal from "./modals/updateModal/UpdateModal"
 
 
 
@@ -46,7 +46,7 @@ const Profile = () => {
                     <p className={styles.subText}>Lorem ipsum dolor Vivamus nisl ligula, congue sodales interdum vel.</p>
                 </div>
                 <div className={styles.detailDiv}>
-                    <CurrentUser />
+                    <CurrentUser  />
                 </div>
             </div>
             <div className={styles.borderDiv}>

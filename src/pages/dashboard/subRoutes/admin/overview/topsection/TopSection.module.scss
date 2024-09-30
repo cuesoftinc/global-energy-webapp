@@ -2,10 +2,17 @@
 @use "../../../../../../scss/utils/functions" as fn;
 
 main {
-
- .widgetDiv {
+  .widgetDiv {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: fn.rem(24);
- }
+    @media screen and (max-width: 920px) {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: fn.rem(14);
+    }
+    @media screen and (max-width: 540px) {
+      grid-template-columns: repeat(1, 1fr);
+      row-gap: fn.rem(14);
+    }
+  }
 }
