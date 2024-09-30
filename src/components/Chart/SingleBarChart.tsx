@@ -37,7 +37,6 @@ const SingleBarChart: React.FC<PROPS> = ({
 	title,
 	smallText,
 	label,
-	labelColor,
 	data,
 	options,
 	element,
@@ -47,7 +46,6 @@ const SingleBarChart: React.FC<PROPS> = ({
 			smallText={smallText}
 			title={title}
 			label={label}
-			labelColor={labelColor}
 			chart={<Bar data={data} options={options} />}
 			element={element}
 		/>

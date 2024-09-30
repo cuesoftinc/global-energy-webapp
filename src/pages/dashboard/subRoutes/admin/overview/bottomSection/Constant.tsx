@@ -1,32 +1,32 @@
-import { useEffect, useState } from "react";
-import api from "../../../../../../utils/interceptor";
-import { useQuery } from "react-query";
-import toast from "react-hot-toast";
-import { ChartResponse } from "../../../../../../types";
+// import { useEffect, useState } from "react";
+// import api from "../../../../../../utils/interceptor";
+// import { useQuery } from "react-query";
+// import toast from "react-hot-toast";
+// import { ChartResponse } from "../../../../../../types";
 
 
-interface ConstantProps {
-    dateRange: [string, string];
-}
+// interface ConstantProps {
+//     dateRange: [string, string];
+// }
 
 
-export const useConstant = ({ dateRange }: ConstantProps) => {
-    const [barChartData, setBarChartData] = useState<ChartResponse | null>(null)
+export const useConstant = () => {
+    // const [barChartData, setBarChartData] = useState<ChartResponse | null>(null)
 
-    const getBarChartData = async () => {
-        const response = await api.get<ChartResponse>("/subscription/dailyUsersAndSubscriptions")
-        console.log("data", response)
-        return response.data
-    }
+    // const getBarChartData = async () => {
+    //     const response = await api.get<ChartResponse>("/subscription/dailyUsersAndSubscriptions")
+    //     console.log("data", response)
+    //     return response.data
+    // }
 
-    const { error, refetch } = useQuery("getBarChartData", getBarChartData, {
-        onSuccess: (data) => {
-            setBarChartData(data);
-        },
-        onError: () => {
-            toast.error("Error fetching data");
-        },
-    });
+    // const { error, refetch } = useQuery("getBarChartData", getBarChartData, {
+    //     onSuccess: (data) => {
+    //         setBarChartData(data);
+    //     },
+    //     onError: () => {
+    //         toast.error("Error fetching data");
+    //     },
+    // });
 
     // useEffect(() => {
     //     if (dateRange && dateRange.length === 2) {
@@ -36,11 +36,11 @@ export const useConstant = ({ dateRange }: ConstantProps) => {
     //     }
     // }, [dateRange, refetch]);
 
-    useEffect(() => {
-        if (error) {
-            toast.error("Error fetching data");
-        }
-    }, [error]);
+    // useEffect(() => {
+    //     if (error) {
+    //         toast.error("Error fetching data");
+    //     }
+    // }, [error]);
 
     const chartData = {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'sat', 'Sun'],

@@ -5,6 +5,7 @@ interface PROPS {
 	title?: string;
 	smallText?:boolean;
 	chart: any;
+	label?: string;
 	element?: React.ReactNode;
 }
 
