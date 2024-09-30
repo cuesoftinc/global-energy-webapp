@@ -134,7 +134,6 @@ const SignUp: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive }) => {
         setShowConfirmPassword(!showConfirmPassword)
     }
 
-
     return (
         <div className={styles.form}>
             <div className={styles.header}>

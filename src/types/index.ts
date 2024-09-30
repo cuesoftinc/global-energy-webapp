@@ -79,29 +79,9 @@ export interface FlutterwaveConfig {
 }
 
 export interface ChartResponse {
-    todayUsers: {
-      id: string;
-      type: string;
-      userId: string;
-      paymentId: string;
-      amount: string;
-      createdAt: string;
-      updatedAt: string;
-    }[];
-    todaySubscribers: {
-      id: string;
-      name: string;
-      email: string;
-      userName: string;
-      accountType: string;
-      address: string;
-      phoneNumber: string;
-      subscriptionType: string;
-      isActive: boolean;
-      createdAt: string;
-      updatedAt: string;
-    }[];
-    todaysDate: string;
-  }
+    date: Record<string, string>;
+    subscriptions: Record<string, any[]>;
+    users: Record<string, string[]>;
+}
 
 

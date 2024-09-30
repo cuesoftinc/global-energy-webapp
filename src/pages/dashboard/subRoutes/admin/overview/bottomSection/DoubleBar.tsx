@@ -1,17 +1,22 @@
 import styles from "./DoubleBar.module.scss"
-import {  useConstant } from "./Constant";
+import { useConstant } from "./Constant";
 import { DatePicker } from "antd";
-// import { useState } from "react";
+import { useEffect, useState } from "react";
 import SingleBarChart from "../../../../../../components/Chart/SingleBarChart";
 
 const DoubleBar = () => {
-    // const [dateRange, setDateRange] = useState<[string, string]>(["2024-02-22", "2024-04-15"]);
+    const [dateRange, setDateRange] = useState<[string, string]>(["2024-09-05T00:00:00.000Z", "2024-09-30T00:00:00.000Z"]);
 
-    // const handleDateChange = (_dates: any, dateStrings: [string, string]) => {
-    //     setDateRange(dateStrings);
-    // };
+    const handleDateChange = (_dates: any, dateStrings: [string, string]) => {
+        setDateRange([new Date(dateStrings[0]).toISOString(), new Date(dateStrings[1]).toISOString()]);
+    };
 
-    const { chartData, chartOptions } = useConstant();
+    const { chartData, chartOptions, refetch } = useConstant({ dateRange});
+
+
+    useEffect(() => {
+        refetch()
+    }, [dateRange, refetch])
 
     const element = (
         <div className={styles.buttonwrapper}>
@@ -36,7 +41,7 @@ const DoubleBar = () => {
                         maxWidth: "250px",
                         borderColor: "#BCBCBC",
                     }}
-                onChange={()=> {}}
+                    onChange={handleDateChange}
                 />
             </div>
         </div>

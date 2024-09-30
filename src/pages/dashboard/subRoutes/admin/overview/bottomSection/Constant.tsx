@@ -1,49 +1,47 @@
-// import { useEffect, useState } from "react";
-// import api from "../../../../../../utils/interceptor";
-// import { useQuery } from "react-query";
-// import toast from "react-hot-toast";
-// import { ChartResponse } from "../../../../../../types";
+import { useEffect } from "react";
+import api from "../../../../../../utils/interceptor";
+import { useQuery } from "react-query";
+import toast from "react-hot-toast";
+import { ChartResponse } from "../../../../../../types";
+import useCurrentChartStore from "../../../../../../store/ChartSore";
 
 
-// interface ConstantProps {
-//     dateRange: [string, string];
-// }
+interface ConstantProps {
+    dateRange: [string, string];
+}
+
+export const useConstant = ({ dateRange }: ConstantProps) => {
+    const { barChartData, setBarChartData } = useCurrentChartStore()
+
+    const getBarChartData = async () => {
+        const response = await api.get<ChartResponse>("/subscription/weeklyUsersAndSubscriptions", {
+            params: {
+                startDate: dateRange[0],
+                endDate: dateRange[1],
+            },
+        })
+        return response.data
+    }
+
+    const { error, refetch } = useQuery("getBarChartData", getBarChartData, {
+        enabled: !!dateRange[0] && !!dateRange[1],
+        onSuccess: (data) => {
+            setBarChartData(data )
+        },
+        onError: () => {
+            toast.error("Error fetching data");
+        },
+    });
 
 
-export const useConstant = () => {
-    // const [barChartData, setBarChartData] = useState<ChartResponse | null>(null)
-
-    // const getBarChartData = async () => {
-    //     const response = await api.get<ChartResponse>("/subscription/dailyUsersAndSubscriptions")
-    //     console.log("data", response)
-    //     return response.data
-    // }
-
-    // const { error, refetch } = useQuery("getBarChartData", getBarChartData, {
-    //     onSuccess: (data) => {
-    //         setBarChartData(data);
-    //     },
-    //     onError: () => {
-    //         toast.error("Error fetching data");
-    //     },
-    // });
-
-    // useEffect(() => {
-    //     if (dateRange && dateRange.length === 2) {
-    //         refetch();
-    //     } else {
-    //         setBarChartData([]);
-    //     }
-    // }, [dateRange, refetch]);
-
-    // useEffect(() => {
-    //     if (error) {
-    //         toast.error("Error fetching data");
-    //     }
-    // }, [error]);
+    useEffect(() => {
+        if (error) {
+            toast.error("Error fetching data");
+        }
+    }, [error]);
 
     const chartData = {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'sat', 'Sun'],
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         datasets: [
             {
                 label: 'All Users',
@@ -52,8 +50,15 @@ export const useConstant = () => {
                 maxBarThickness: 80,
                 borderWidth: 1,
                 minBarLength: 5,
-                data: [65, 59, 80, 81, 56, 55, 40],
-                // data: barChartData ? barChartData.todayUsers.map(() => 1) : [],
+                data: [
+                    (barChartData?.users.Monday?.length || 0),
+                    (barChartData?.users.Tuesday?.length || 0),
+                    (barChartData?.users.Wednesday?.length || 0),
+                    (barChartData?.users.Thursday?.length || 0),
+                    (barChartData?.users.Friday?.length || 0),
+                    (barChartData?.users.Saturday?.length || 0),
+                    (barChartData?.users.Sunday?.length || 0),
+                ],
             },
             {
                 label: 'Subscribed users',
@@ -62,8 +67,15 @@ export const useConstant = () => {
                 borderWidth: 1,
                 maxBarThickness: 80,
                 minBarLength: 5,
-                data: [65, 59, 80, 81, 56, 55, 40],
-                // data: barChartData ? barChartData.todaySubscribers.map(() => 1) : [],
+                data: [
+                    (barChartData?.subscriptions.Monday.length || 0),
+                    (barChartData?.subscriptions.Tuesday.length || 0),
+                    (barChartData?.subscriptions.Wednesday.length || 0),
+                    (barChartData?.subscriptions.Thursday.length || 0),
+                    (barChartData?.subscriptions.Friday.length || 0),
+                    (barChartData?.subscriptions.Saturday.length || 0),
+                    (barChartData?.subscriptions.Sunday.length || 0),
+                ]
             }
         ]
     };
@@ -133,7 +145,7 @@ export const useConstant = () => {
         },
     };
 
-    return { chartData, chartOptions };
+    return { chartData, chartOptions, refetch };
 };
 
 

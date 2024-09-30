@@ -46,6 +46,7 @@ const UpdateAccountModal: React.FC<UpdateAccountModalProps> = ({ userId, onClose
     const { mutate } = useMutation(updateUser, {
         onSuccess: () => {
             queryClient.invalidateQueries("getCurrentUser")
+            queryClient.invalidateQueries("getAllUsers")
             toast.success("Profile updated successfully")
             setUserData(initialState)
             onCloseOverlay()

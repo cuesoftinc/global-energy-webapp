@@ -7,7 +7,8 @@ import styles from "./Viewusers.module.scss"
 import { useNavigate } from "react-router-dom"
 import UpdateAccountModal from "../../../profile/modals/updateModal/UpdateModal"
 import Overlay from "../../../../../../components/overlay/OverlayComponent"
-import DeleteModal from "../../../profile/modals/DeleteModal"
+import AdminDeleteModal from "./adminDelete/AdminDeleteUser"
+
 
 
 const ViewUsers = () => {
@@ -33,13 +34,13 @@ const ViewUsers = () => {
     const handleViewProfile = (id: string) => {
         if (id) {
             nav(`/dashboard/user-profile/${id}`)
-            console.log("view", id)
         }
     }
 
     const handleUpdateModal = (userId: string) => {
         setShowUpdateModal(true)
         setSelectedUserId(userId)
+        // handleToggle(userId)
     }
 
     const handleDeleteModal = (userId: string) => {
@@ -96,7 +97,6 @@ const ViewUsers = () => {
                         <div>
                             <Overlay showOverlay={showUpdateModal} onCloseOverlay={() => setShowUpdateModal(false)}>
                                 {selectedUserId && (
-                                    console.log("update", selectedUserId),
                                     <UpdateAccountModal
                                         userId={selectedUserId}
                                         onCloseOverlay={() => setShowUpdateModal(false)}
@@ -105,7 +105,7 @@ const ViewUsers = () => {
                             </Overlay>
                             <Overlay showOverlay={showDeleteModal} onCloseOverlay={() => setShowDeleteModal(false)}>
                                 {selectedId && (
-                                    <DeleteModal userId={selectedUserId} onCloseOverlay={() => setShowDeleteModal(false)} />
+                                    <AdminDeleteModal userId={selectedId} onCloseOverlay={() => setShowDeleteModal(false)} />
                                 )}
                             </Overlay>
 

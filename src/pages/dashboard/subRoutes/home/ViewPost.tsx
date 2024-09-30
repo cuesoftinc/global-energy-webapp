@@ -36,9 +36,9 @@ const ViewPost = () => {
 
     return (
         <div className={styles.main}>
-            <div className={styles.backDiv}>
+            <div className={styles.backDiv} onClick={() => navigate(-1)} >
                 <img src={backIcon} alt="back icon" />
-                <p onClick={() => navigate(-1)} className={styles.back}>Back</p>
+                <p className={styles.back}>Back</p>
             </div>
             <div className={styles.patternDiv}>
                 <div className={styles.pattern}></div>

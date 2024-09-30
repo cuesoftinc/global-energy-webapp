@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: flex-start;
   row-gap: fn.rem(24);
+  width: 100%;
 
   .header {
     .delSubtitle {
@@ -19,6 +20,7 @@
     display: flex;
     flex-direction: column;
     gap: fn.rem(20);
+    width: 100%;
 
     .nameDiv {
       display: flex;

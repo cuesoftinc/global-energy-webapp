@@ -33,7 +33,6 @@ const Login: React.FC<PROPS> = ({ setActive, setOverlay, setOverlayText }) => {
         const base = import.meta.env.VITE_BASE_URL;
         const url = `${base}/auth/sign-in`
         const response = await postRequest(url, userData)
-        console.log("data", response)
         return response
     }
 
@@ -43,7 +42,6 @@ const Login: React.FC<PROPS> = ({ setActive, setOverlay, setOverlayText }) => {
                 // Successful login
                 const exp = new Date(new Date().getTime() + 120 * 60 * 1000);
                 toast.success("Login successful!"), { duration: 5000 };
-                console.log("data", data)
                 Cookies.set("glbATK", data.accessToken, { expires: exp });
                 Cookies.set("glbRTK", data?.refreshToken, { expires: exp })
                 Cookies.set("userRole", data.user.role);

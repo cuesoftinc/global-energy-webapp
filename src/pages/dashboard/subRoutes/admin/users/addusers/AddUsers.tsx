@@ -8,6 +8,7 @@ import Input from "../../../../../../components/input/Input";
 import Button from "../../../../../../components/button/Button";
 import api from "../../../../../../utils/interceptor";
 import { UserData } from "../../../../../../types";
+import LoadingScreen from "../../../../../../components/loadingScreen/LoadingScreen";
 
 const initialState = {
     firstName: "",
@@ -29,8 +30,8 @@ const AddUsers = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
 
-    const registerUser = async (userData : UserData) => {
-        const response = await api.post("/auth/sign-up",{ 
+    const createUser = async (userData: UserData) => {
+        const response = await api.post("/auth/sign-up", {
             firstName: userData.firstName.trim(),
             lastName: userData.lastName.trim(),
             email: userData.email.trim(),
@@ -41,16 +42,14 @@ const AddUsers = () => {
             password: userData.password.trim(),
             confirmPassword: userData.confirmPassword.trim()
         })
+        console.log("data", response)
         return response
     }
 
-    const { mutate, isLoading } = useMutation(registerUser, {
+    const { mutate, isLoading } = useMutation(createUser, {
         onSuccess: (data) => {
-            if (data.status !== 200) {
-                toast.error(data?.data?.message?.message, { duration: 5000 });
-                return
-            }
-            toast.success("User created successfully!", { duration: 5000 })
+            toast.success(data?.data?.message, { duration: 5000 })
+            setUserData(initialState)
         },
 
         onError: (error: any) => {
@@ -117,6 +116,7 @@ const AddUsers = () => {
 
     return (
         <div className={styles.form}>
+            <LoadingScreen style={{ width: "100%" }} overlay={isLoading} overlayText={'Creating new user...'} />
             <div className={styles.header}>
                 <h1 className={styles.head}>ADD A NEW USER</h1>
                 <span className={styles.subtitle}>Enter personal details to add a new user.</span>
