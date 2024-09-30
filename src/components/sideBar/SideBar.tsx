@@ -26,7 +26,7 @@ const SideBar: React.FC<SideBarProps> = ({ toggleMenu, handleMenuToggle, userRol
     }
 
     const logoutAPI = async (refreshToken: string) => {
-        const base = import.meta.env.VITE_BASE_URL;
+        const base = import.meta.env.VITE_MY_BASE_URL;
         const url = `${base}/auth/logout`;
         const response = await postRequest(url, { refreshToken });
         // const response = api.post(`/auth/logout`, {

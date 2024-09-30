@@ -5,7 +5,7 @@ import { refreshPostRequest } from "./apiClient";
 const usePostRefreshToken = () => {
 
     const refreshPostAccess = async (currentRefreshToken: string) => {
-        const base = import.meta.env.VITE_BASE_URL;
+        const base = import.meta.env.VITE_MY_BASE_URL;
         const url = `${base}/auth/refresh-token`;
         const response = await refreshPostRequest(url, { refreshToken: currentRefreshToken });
         console.log("API Response:", response.data)

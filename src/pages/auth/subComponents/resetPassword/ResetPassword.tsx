@@ -37,7 +37,7 @@ const ResetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText }) => {
     const resetPassword = async (token: string) => {
         setOverlay(true)
         setOverlayText("Resetting your password...")
-        const base = import.meta.env.VITE_BASE_URL
+        const base = import.meta.env.VITE_MY_BASE_URL
         const url = `${base}/auth/reset-password`
         const response = await postRequest(url, {
             resetToken: token,

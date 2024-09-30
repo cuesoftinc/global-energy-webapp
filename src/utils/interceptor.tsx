@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { handleRefreshToken } from "./RefreshFunction";
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
+    baseURL: import.meta.env.VITE_MY_BASE_URL,
 });
 
 // Request interceptor to add the access token to headers

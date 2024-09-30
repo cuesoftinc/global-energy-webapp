@@ -9,7 +9,7 @@ export const handleRefreshToken = async (retryRequest: () => Promise<any>) => {
     }
 
     try {
-        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/refresh-token`, { refreshToken });
+        const response = await axios.post(`${import.meta.env.VITE_MY_BASE_URL}/auth/refresh-token`, { refreshToken });
         const { accessToken, refreshToken: newRefreshToken } = response.data;
 
         // Save new tokens

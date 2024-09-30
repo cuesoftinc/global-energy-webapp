@@ -23,7 +23,7 @@ const ForgetPassword: React.FC<PROPS> = ({ setOverlay, setOverlayText, setActive
     const passwordForgotten = async () => {
         setOverlay(true)
         setOverlayText("Sending password to your email...")
-        const base = import.meta.env.VITE_BASE_URL;
+        const base = import.meta.env.VITE_MY_BASE_URL;
         const url = `${base}/auth/forgot-password`
         const response = await postRequest(url, {
             email: userData.email.trim()

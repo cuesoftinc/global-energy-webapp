@@ -30,7 +30,7 @@ const Login: React.FC<PROPS> = ({ setActive, setOverlay, setOverlayText }) => {
     const loginUser = async () => {
         setOverlay(true)
         setOverlayText("Logging you in...")
-        const base = import.meta.env.VITE_BASE_URL;
+        const base = import.meta.env.VITE_MY_BASE_URL;
         const url = `${base}/auth/sign-in`
         const response = await postRequest(url, userData)
         return response
