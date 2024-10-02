@@ -3,29 +3,42 @@ import Button from "../../../../components/button/Button"
 import Overlay from "../../../../components/overlay/OverlayComponent"
 import CurrentUser from "./CurrentUser"
 import styles from "./Profile.module.scss"
-import UpdateAccountModal from "./modals/UpdateModal"
 import DeleteModal from "./modals/DeleteModal"
+import PasswordUpdateModal from "./modals/PassowrdUpdate"
+import useCurrentUser from "../../../../hook/useCurrentUser"
+import UpdateAccountModal from "./modals/updateModal/UpdateModal"
+
 
 
 
 const Profile = () => {
     const [showUpdateModal, setShowUpdateModal] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
+    const [showPasswordModal, setShowPasswordModal] = useState(false)
 
-    const handleUpdateOverlay = () => {
+    const { currentUser } = useCurrentUser()
+
+    const handleUpdateProfile = () => {
         setShowUpdateModal(true)
+    }
+    const handleChangePassword = () => {
+        setShowPasswordModal(true)
     }
     const handleDeleteOverlay = () => {
         setShowDeleteModal(true)
     }
 
+
     return (
         <main className={styles.main}>
             <Overlay showOverlay={showUpdateModal} onCloseOverlay={() => setShowUpdateModal(false)}>
-                <UpdateAccountModal />
+                <UpdateAccountModal userId={currentUser?.id} onCloseOverlay={() => setShowUpdateModal(false)} />
+            </Overlay>
+            <Overlay showOverlay={showPasswordModal} onCloseOverlay={() => setShowPasswordModal(false)}>
+                <PasswordUpdateModal onCloseOverlay={() => setShowPasswordModal(false)} />
             </Overlay>
             <Overlay showOverlay={showDeleteModal} onCloseOverlay={() => setShowDeleteModal(false)}>
-                <DeleteModal />
+                <DeleteModal userId={currentUser?.id} onCloseOverlay={() => setShowDeleteModal(false)} />
             </Overlay>
             <div className={styles.borderDiv}>
                 <div className={styles.titleDiv}>
@@ -33,7 +46,7 @@ const Profile = () => {
                     <p className={styles.subText}>Lorem ipsum dolor Vivamus nisl ligula, congue sodales interdum vel.</p>
                 </div>
                 <div className={styles.detailDiv}>
-                    <CurrentUser />
+                    <CurrentUser  />
                 </div>
             </div>
             <div className={styles.borderDiv}>
@@ -47,7 +60,7 @@ const Profile = () => {
                         isLoading={false}
                         disabled={false}
                         className={styles.button}
-                        action={handleUpdateOverlay}
+                        action={handleUpdateProfile}
                     >
                         Update Account
                     </Button>
@@ -64,6 +77,7 @@ const Profile = () => {
                         isLoading={false}
                         disabled={false}
                         className={styles.button}
+                        action={handleChangePassword}
                     >
                         Change Password
                     </Button>

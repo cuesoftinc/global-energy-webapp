@@ -1,3 +1,11 @@
+import PendingPosts from "../pages/dashboard/subRoutes/admin/adminPost/pending/PendingPost";
+import AdminPost from "../pages/dashboard/subRoutes/admin/adminPost/post/Post";
+import ViewPosts from "../pages/dashboard/subRoutes/admin/adminPost/view/ViewPosts";
+import Overview from "../pages/dashboard/subRoutes/admin/overview";
+import UserProfile from "../pages/dashboard/subRoutes/admin/profile/UserProfile";
+import Subscription from "../pages/dashboard/subRoutes/admin/subscription/Subscription";
+import AddUsers from "../pages/dashboard/subRoutes/admin/users";
+import ViewUsers from "../pages/dashboard/subRoutes/admin/users/viewusers/ViewUsers";
 import Contact from "../pages/dashboard/subRoutes/contact";
 import FAQ from "../pages/dashboard/subRoutes/faq";
 import Home from "../pages/dashboard/subRoutes/home";
@@ -6,6 +14,7 @@ import PostContent from "../pages/dashboard/subRoutes/post-content";
 import Create from "../pages/dashboard/subRoutes/power-management";
 import Profile from "../pages/dashboard/subRoutes/profile";
 import Subscribe from "../pages/dashboard/subRoutes/subscribe";
+
 
 
 
@@ -37,8 +46,40 @@ const Routes = () => {
             element: <Subscribe />,
         },
         {
-            path: "/dashboard/user-profile",
+            path: "/dashboard/overview",
+            element: <Overview />,
+        },
+        {
+            path: "/dashboard/post/admin-create",
+            element: <AdminPost />,
+        },
+        {
+            path: "/dashboard/post/admin-pending",
+            element: <PendingPosts />,
+        },
+        {
+            path: "/dashboard/post/admin-view",
+            element: <ViewPosts />,
+        },
+        {
+            path: "/dashboard/add-users",
+            element: <AddUsers />,
+        },
+        {
+            path: "/dashboard/view-all-users",
+            element: <ViewUsers />,
+        },
+        {
+            path: "/dashboard/view-all-subscription",
+            element: <Subscription />,
+        },
+        {
+            path: "/dashboard/user-profile/",
             element: <Profile />,
+        },
+        {
+            path: "/dashboard/user-profile/:id",
+            element: <UserProfile />
         },
         {
             path: "/dashboard/faq",

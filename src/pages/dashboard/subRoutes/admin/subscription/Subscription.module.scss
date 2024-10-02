@@ -1,0 +1,148 @@
+@use "../../../../../scss/global/colors" as *;
+@use "../../../../../scss/utils/functions" as fn;
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: fn.rem(24);
+    @media screen and (max-width: 540px) {
+      gap: fn.rem(14);
+    }
+  
+    .Container {
+      background-color: $background;
+      display: flex;
+      flex-direction: column;
+      row-gap: fn.rem(24);
+      border-radius: 8px;
+      @media screen and (max-width: 540px) {
+        gap: fn.rem(14);
+      }
+    }
+  
+    tbody {
+      text-align: center;
+      color: $table-head;
+      font-weight: 400;
+      font-size: 16px;
+  
+      tr:nth-child(even) {
+        background-color: $lighter-blue;
+      }
+  
+      td {
+        padding: fn.rem(10);
+        cursor: pointer;
+  
+        .button {
+          background-color: transparent;
+          cursor: pointer;
+        }
+      }
+  
+      .webkitBox {
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        max-height: calc(3 * 1.6em);
+        overflow: hidden;
+      }
+  
+      .customTD1 {
+        text-align: left;
+        overflow: hidden;
+        padding-left: fn.rem(10);
+        border-radius: 0 0 0 8px;
+      }
+      .customTD5 {
+        border-radius: 0 0 8px 0;
+        position: relative;
+  
+        .optionModal {
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          row-gap: 16px;
+          background-color: #fff;
+          padding: 8px 8px 12px;
+          border-radius: 4px;
+          box-shadow: 0px 25px 45px 0px #5c5c5c1a;
+          z-index: 50;
+        }
+        .optionButton {
+          font-size: 12px;
+          color: #8d8d8d;
+          background-color: #fff;
+          cursor: pointer;
+        }
+        .view {
+          color: green;
+          display: inline;
+          border-bottom: 2px solid $white;
+          &:hover {
+            border-bottom: 2px solid green;
+          }
+        }
+        .update {
+          color: orange;
+          display: inline;
+          border-bottom: 2px solid $white;
+          &:hover {
+            border-bottom: 2px solid orange;
+          }
+        }
+        .delete {
+          color: red;
+          display: inline;
+          border-bottom: 2px solid $white;
+          &:hover {
+            border-bottom: 2px solid red;
+          }
+        }
+      }
+    }
+  
+    .paginationContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      column-gap: fn.rem(12);
+      padding: fn.rem(8) fn.rem(14);
+      background-color: $blue;
+      border-radius: 8px;
+      color: $white;
+  
+      .prevBtn {
+        background-color: transparent;
+        cursor: pointer;
+        color: white;
+        display: inline;
+        border-bottom: 2px solid $blue;
+        &:not(:disabled):hover {
+          border-bottom: 2px solid $white;
+        }
+        &:disabled {
+          color: lightgray;
+          cursor: not-allowed;
+        }
+      }
+      .nextBtn {
+        background-color: transparent;
+        cursor: pointer;
+        color: white;
+        display: inline;
+        border-bottom: 2px solid $blue;
+        &:not(:disabled):hover {
+          border-bottom: 2px solid $white;
+        }
+        &:disabled {
+          color: lightgray;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+  

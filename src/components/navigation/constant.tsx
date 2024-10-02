@@ -1,4 +1,5 @@
 export const renderHeader = (splitPath: Array<string>) => {
+    
     switch (true) {
         case splitPath[splitPath.length - 1] === "dashboard":
             return "Dashboard";
@@ -12,11 +13,35 @@ export const renderHeader = (splitPath: Array<string>) => {
         case splitPath[splitPath.length - 1] === "create":
             return "Create my PMP"
             break;
-        case splitPath[splitPath.length - 1] === "subscribe":
-            return "Subscription Plans"
+        case splitPath[splitPath.length - 1] === "overview":
+            return "Overview"
             break;
-        case splitPath[splitPath.length - 1] === "user-profile":
-            return "Profile"
+        case splitPath[splitPath.length - 1] === "admin-create":
+            return "Create post"
+            break;
+        case splitPath[splitPath.length - 1] === "admin-view":
+            return "View All Posts"
+            break;
+        case splitPath[splitPath.length - 1] === "admin-pending":
+            return "Pending Posts"
+            break;
+        case splitPath[splitPath.length - 1] === "add-users":
+            return "Add New Users"
+            break;
+        case splitPath[splitPath.length - 1] === "view-all-users":
+            return "View All Users"
+            break;
+        case splitPath[splitPath.length - 1] === "view-all-subscription":
+            return "View All Subscription"
+            break;
+            case splitPath[splitPath.length - 1] === "user-profile":
+            return "My Profile"
+            break;
+            case splitPath.length === 4 && splitPath[2] === "user-profile":
+            return "User Profile"
+            break;
+            case splitPath.length === 4 && splitPath[2] === "members-post":
+            return "Update Post"
             break;
         case splitPath[splitPath.length - 1] === "faq":
             return "Frequently Asked Questions"

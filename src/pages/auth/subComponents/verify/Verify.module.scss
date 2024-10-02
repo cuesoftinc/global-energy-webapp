@@ -1,0 +1,41 @@
+@use "../../../../scss/global/colors" as *;
+@use "../../../../scss/utils/functions" as fn;
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: fn.rem(560);
+  height: 50vh;
+  @media screen and (max-width: 920px) {
+    align-items: center;
+  }
+  .head {
+    font-size: fn.rem(35);
+    color: $heading-bold;
+    @media screen and (min-width: 1500px) {
+      font-size: fn.rem(40);
+    }
+    @media screen and (max-width: 920px) {
+      text-align: center;
+    }
+    @media screen and (max-width: 430px) {
+      font-size: fn.rem(24);
+    }
+  }
+  .subtitle {
+    font-size: fn.rem(20);
+    margin-top: fn.rem(10);
+    @media screen and (max-width: 920px) {
+      text-align: center;
+    }
+    @media screen and (max-width: 430px) {
+      font-size: fn.rem(16);
+    }
+  }
+  @media screen and (min-width: 1500px) {
+    max-width: fn.rem(800);
+  }
+}

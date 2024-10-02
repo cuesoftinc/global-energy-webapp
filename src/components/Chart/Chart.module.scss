@@ -1,0 +1,39 @@
+@use "../../scss/global/colors" as *;
+@use "../../scss/utils/functions" as fn;
+
+.main {
+  width: 100%;
+  background-color: $white;
+  padding: 33px 24px;
+  border-radius: fn.rem(6);
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(30);
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media screen and (max-width: 450px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: fn.rem(14);
+    }
+
+    .title {
+      font-size: fn.rem(24);
+      font-weight: 700;
+      color: #4c6356;
+      @media screen and (max-width: 540px) {
+        font-size: fn.rem(20);
+      }
+    }
+  }
+
+  .chart {
+    width: 100%;
+    height: fn.rem(300);
+  }
+}

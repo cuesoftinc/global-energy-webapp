@@ -1,0 +1,102 @@
+@use "../../../../../../scss/global/colors" as *;
+@use "../../../../../../scss/utils/functions" as fn;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(40);
+  .arrowLeft {
+    width: fn.rem(30);
+    height: fn.rem(30);
+    cursor: pointer;
+  }
+
+  .header {
+    max-width: fn.rem(560);
+    .head {
+      font-size: fn.rem(20);
+      color: $heading-bold;
+      @media screen and (max-width: 430px) {
+        font-size: fn.rem(16);
+      }
+    }
+    .subtitle {
+      font-size: fn.rem(16);
+      color: $text-alt;
+      margin-top: fn.rem(10);
+      @media screen and (max-width: 430px) {
+        font-size: fn.rem(14);
+      }
+    }
+    @media screen and (min-width: 1500px) {
+      max-width: fn.rem(800);
+    }
+  }
+  .formContent {
+    display: flex;
+    flex-direction: column;
+    gap: fn.rem(20);
+
+    .namesDiv {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: fn.rem(26);
+      width: 100%;
+    }
+
+    .buttonDiv {
+      display: flex;
+      flex-direction: column;
+      gap: fn.rem(10);
+      .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: fn.rem(22);
+      }
+    }
+  }
+}
+
+.inputDiv {
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(8);
+  width: 100%;
+}
+
+.label {
+  font-size: fn.rem(16);
+  color: #8a8a8a;
+  font-weight: 500;
+  @media screen and (max-width: 430px) {
+    font-size: fn.rem(14);
+  }
+}
+
+.selectInput {
+  width: 100%;
+  color: $text;
+  font-size: fn.rem(16);
+  background-color: $dim-white;
+  padding: fn.rem(12);
+  border-radius: fn.rem(6);
+  border: 1px solid $border;
+  @media screen and (max-width: 430px) {
+    font-size: fn.rem(14);
+  }
+
+  &:focus {
+    border: 1px solid $text;
+    outline: none;
+  }
+
+  &:active {
+    border: 1px solid $text;
+  }
+
+  &:focus-visible {
+    border-color: $text;
+    outline: none;
+  }
+}

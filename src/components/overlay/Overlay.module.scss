@@ -1,8 +1,6 @@
 @use "../../scss/global/colors" as *;
 @use "../../scss/utils/functions" as fn;
 
-
-
 .overlay {
   backdrop-filter: blur(2px) saturate(148%);
   -webkit-backdrop-filter: blur(2px) saturate(148%);
@@ -30,8 +28,8 @@
     padding: fn.rem(20);
     border-radius: fn.rem(6);
     min-width: 400px; /* Adjust as needed */
-    min-height:400px;
-    
+    // min-height:400px;
+    height: auto;
 
     .closeIconDiv {
       width: 100%;

@@ -1,0 +1,24 @@
+@use "../../scss/global/colors" as *;
+@use "../../scss/utils/functions" as fn;
+
+.main {
+  background-color: $background;
+  border: 1px solid $shadow-white;
+  border-radius: 8px;
+  overflow-x: auto;
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+      padding: fn.rem(14);
+      font-size: fn.rem(12);
+      font-weight: 600;
+      text-align: center;
+      color: $table-head;
+      border-bottom: 1px dashed $shadow-white;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@use "../../../../../../scss/global/colors" as *;
+@use "../../../../../../scss/utils/functions" as fn;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  row-gap: fn.rem(24);
+  width: 100%;
+
+  .header {
+    .delSubtitle {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+
+  .formContent {
+    display: flex;
+    flex-direction: column;
+    gap: fn.rem(20);
+    width: 100%;
+
+    .nameDiv {
+      display: flex;
+      flex-direction: row;
+      gap: fn.rem(20);
+    }
+    .inputDiv {
+      display: flex;
+      flex-direction: column;
+      gap: fn.rem(20);
+      width: 100%;
+    }
+
+    .label {
+      font-size: fn.rem(16);
+      color: #8a8a8a;
+      font-weight: 500;
+    }
+
+    .select {
+      font-size: 16px;
+      border-radius: 6px;
+      background-color: $dim-white;
+      border: 1px solid $border;
+      padding: fn.rem(12);
+    }
+  }
+
+  .delButton {
+    background-color: red;
+  }
+}

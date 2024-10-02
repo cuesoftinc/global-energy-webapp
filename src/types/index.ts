@@ -19,6 +19,15 @@ export interface BlogPost {
     __v: number,
     _id: string,
 }
+export interface Subscription {
+    id: string,
+    type: string,
+    userId: string,
+    paymentId: string,
+    amount: string,
+    createdAt: string,
+    updatedAt: string,
+}
 
 export interface User {
     id: string,
@@ -33,4 +42,46 @@ export interface User {
     createdAt: string,
     updatedAt: string,
 }
+
+export interface UserData {
+    firstName: string;
+    lastName: string;
+    email: string;
+    userName: string;
+    address: string;
+    phoneNumber: string;
+    accountType: string;
+    password: string;
+    confirmPassword: string;
+}
+
+export interface FlutterwaveConfig {
+    public_key: string;
+    tx_ref: string;
+    amount: number;
+    currency: string;
+    payment_options: string;
+    customer: {
+        email: string;
+        phone_number: string;
+        name: string;
+    };
+    customizations: {
+        title: string;
+        description: string;
+        logo: string;
+    };
+    redirect_url?: string;
+    headers?: {
+        Authorization: string;
+        'Content-Type': string;
+    };
+}
+
+export interface ChartResponse {
+    date: Record<string, string>;
+    subscriptions: Record<string, any[]>;
+    users: Record<string, string[]>;
+}
+
 

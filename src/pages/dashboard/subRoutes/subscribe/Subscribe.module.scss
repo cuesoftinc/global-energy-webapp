@@ -29,11 +29,13 @@
       display: flex;
       flex-direction: row;
       row-gap: fn.rem(24);
+      column-gap: fn.rem(0);
       display: flex;
       flex-direction: row;
       background: fff;
       width: 35%;
       @media screen and (max-width: 830px) {
+        column-gap: fn.rem(24);
         width: 50%;
       }
       @media screen and (max-width: 430px) {

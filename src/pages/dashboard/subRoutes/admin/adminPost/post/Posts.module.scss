@@ -1,0 +1,76 @@
+@use "../../../../../../scss/global/colors" as *;
+@use "../../../../../../scss/utils/functions" as fn;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  row-gap: fn.rem(24);
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    color: $secondary-color-dark;
+    text-transform: uppercase;
+    @media screen and (max-width: 430px) {
+      font-size: 16px;
+    }
+  }
+
+  .formContent {
+    display: flex;
+    flex-direction: column;
+    gap: fn.rem(20);
+
+    .inputDiv {
+      display: flex;
+      flex-direction: column;
+      gap: fn.rem(8);
+      width: 100%;
+    }
+
+    .label {
+      font-size: fn.rem(16);
+      color: #8a8a8a;
+      font-weight: 500;
+      @media screen and (max-width: 430px) {
+        font-size: fn.rem(14);
+      }
+    }
+
+    .select {
+      font-size: 16px;
+      border-radius: 6px;
+      background-color: $dim-white;
+      border: 1px solid $border;
+      padding: fn.rem(12);
+    }
+
+    .selectInput {
+      width: 100%;
+      color: $text;
+      font-size: fn.rem(16);
+      background-color: $dim-white;
+      padding: fn.rem(12);
+      border-radius: fn.rem(6);
+      border: 1px solid $border;
+      @media screen and (max-width: 430px) {
+        font-size: fn.rem(14);
+      }
+
+      &:focus {
+        border: 1px solid $text;
+        outline: none;
+      }
+
+      &:active {
+        border: 1px solid $text;
+      }
+
+      &:focus-visible {
+        border-color: $text;
+        outline: none;
+      }
+    }
+  }
+}

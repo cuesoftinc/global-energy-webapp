@@ -6,6 +6,8 @@ import { useMutation, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import api from "../../../../utils/interceptor";
+import LoadingScreen from "../../../../components/loadingScreen/LoadingScreen";
+
 
 interface updateProps {
     postId: string
@@ -72,7 +74,7 @@ const PostContent = () => {
         return response.data
     }
 
-    const { mutate: createpost } = useMutation(postContent, {
+    const { mutate: createpost, isLoading } = useMutation(postContent, {
         onSuccess: (data) => {
             if (data) {
                 queryClient.invalidateQueries("getBlogPost")
@@ -89,7 +91,7 @@ const PostContent = () => {
         }
     })
 
-    const { mutate: update } = useMutation(updatePost, {
+    const { mutate: update, isLoading: loading } = useMutation(updatePost, {
         onSuccess: () => {
             queryClient.invalidateQueries("getBlogPost")
             toast.success("Post updated successfully")
@@ -107,7 +109,7 @@ const PostContent = () => {
 
     // Handle Form Submission (Create or Update)
     const handleSendPost = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        e.preventDefault()
         if (id) {
             const updatedData = {
                 postId: id as string,
@@ -135,6 +137,7 @@ const PostContent = () => {
 
     return (
         <main className={styles.main}>
+            <LoadingScreen style={{ width: "100%" }} overlay={id ? loading : isLoading} overlayText={id ? 'Updating blog post...' : 'Creating blog post...'} />
             <p className={styles.title}>Enter the details of the post</p>
             <form onSubmit={handleSendPost} className={styles.formContent}>
                 <Input
@@ -168,15 +171,15 @@ const PostContent = () => {
                     ></textarea>
                 </div>
                 {!id && (
-                <div className={styles.inputDiv}>
-                    <label htmlFor="imageUpload" className={styles.label}>Upload Image</label>
-                    <input
-                        type="file"
-                        id="imageUpload"
-                        accept="image/*" // Only accept image files
-                        onChange={handleImageChange}
-                    />
-                </div>
+                    <div className={styles.inputDiv}>
+                        <label htmlFor="imageUpload" className={styles.label}>Upload Image</label>
+                        <input
+                            type="file"
+                            id="imageUpload"
+                            accept="image/*" // Only accept image files
+                            onChange={handleImageChange}
+                        />
+                    </div>
                 )}
                 <Button
                     type="submit"

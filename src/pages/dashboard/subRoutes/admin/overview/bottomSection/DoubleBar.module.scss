@@ -1,0 +1,89 @@
+@use "../../../../../../scss/global/colors" as *;
+@use "../../../../../../scss/utils/functions" as fn;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  row-gap: 22px;
+
+  .buttonwrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: fn.rem(18);
+    @media screen and (max-width: 820px) {
+      display: flex;
+      flex-direction: column;
+      row-gap: fn.rem(14);
+    }
+  }
+
+  .usersAndSubDiv {
+    display: flex;
+    flex-direction: column;
+    row-gap: fn.rem(14);
+    @media screen and (max-width: 820px) {
+      display: flex;
+      flex-direction: row;
+      column-gap: fn.rem(14);
+    }
+    // @media screen and (max-width: 450px) {
+    //   display: flex;
+    //   flex-direction: column;
+    //   column-gap: fn.rem(14);
+    // }
+  }
+
+  .userDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 6px;
+  }
+
+  .green {
+    height: 16px;
+    width: 16px;
+    border-radius: 2px;
+    background-color: blue;
+  }
+  .para {
+    font-size: 14px;
+    font-weight: 600;
+    color: $text;
+  }
+
+  .subDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 6px;
+  }
+
+  .red {
+    height: 16px;
+    width: 16px;
+    border-radius: 2px;
+    background-color: green;
+  }
+
+  .filterButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: fn.rem(12);
+    font-size: 12px;
+    font-weight: 500;
+    color: $text;
+    padding: 10px;
+    border-radius: 4px;
+    border: 0.5px solid #bcbcbc;
+    background-color: $background;
+    cursor: pointer;
+  }
+
+}

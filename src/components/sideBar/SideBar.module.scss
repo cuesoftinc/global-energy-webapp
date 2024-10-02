@@ -4,7 +4,6 @@
 .main {
   position: sticky;
   height: 100%;
-  // background-color: $light-green;
   background-color: $light-blue;
   display: flex;
   flex-direction: column;
@@ -19,15 +18,39 @@
     padding-right: fn.rem(10);
     padding-top: fn.rem(12);
     padding-bottom: fn.rem(13);
-    // background-color: $dark-green;
     background-color: $blue;
+
     @media screen and (max-width: 1020px) {
+      padding-top: fn.rem(17);
+      padding-bottom: fn.rem(18);
+    }
+    @media screen and (max-width: 920px) {
       padding-top: fn.rem(12);
-      padding-bottom: fn.rem(12);
+      padding-bottom: fn.rem(13);
+    }
+    @media screen and (max-width: 450px) {
+      padding-top: fn.rem(16);
+      padding-bottom: fn.rem(17);
     }
 
     .logo {
       width: 200px;
+      @media screen and (max-width: 430px) {
+        width: 150px;
+      }
+    }
+
+    .menuIcon {
+      display: block;
+      @media screen and (max-width: 855px) {
+        display: none;
+      }
+    }
+    .menuMobileIcon {
+      display: none;
+      @media screen and (max-width: 855px) {
+        display: block;
+      }
     }
   }
 
@@ -38,7 +61,6 @@
     gap: fn.rem(180);
     height: 100%;
     background-color: $blue;
-    // background-color: $dark-green;
     margin: fn.rem(24);
     border-radius: 12px;
     overflow-y: scroll;
@@ -63,9 +85,8 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: fn.rem(14);
+      gap: fn.rem(10);
       align-items: flex-start;
-      justify-content: center;
 
       .nav {
         width: 100%;
@@ -116,7 +137,7 @@
 
       .subItem {
         padding: 8px 0;
-        padding-left: 45px;
+        padding-left: 42px;
         color: #ababab;
         font-size: fn.rem(14);
 
@@ -127,6 +148,14 @@
       .subActive {
         color: white;
       }
+
+      .caretIconDiv {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
 
     .logoutContainer {
@@ -135,7 +164,7 @@
       padding: fn.rem(10);
       gap: fn.rem(10);
       cursor: pointer;
-      margin-top: 2rem;
+      margin-top: 4rem;
       background: transparent;
 
       &:hover {

@@ -12,7 +12,7 @@
     font-weight: 700;
     color: $secondary-color-dark;
     text-transform: uppercase;
-    @media screen and (max-width: 414px) {
+    @media screen and (max-width: 430px) {
       font-size: 16px;
     }
   }
@@ -30,9 +30,12 @@
     }
 
     .label {
-      font-size: fn.rem(18);
+      font-size: fn.rem(16);
       color: #8a8a8a;
       font-weight: 500;
+      @media screen and (max-width: 430px) {
+        font-size: fn.rem(14);
+      }
     }
 
     .select {
@@ -41,6 +44,9 @@
       background-color: $dim-white;
       border: 1px solid $border;
       padding: fn.rem(12);
+      @media screen and (max-width: 430px) {
+        font-size: fn.rem(14);
+      }
     }
   }
 }

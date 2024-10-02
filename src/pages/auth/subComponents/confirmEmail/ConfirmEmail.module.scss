@@ -1,0 +1,28 @@
+@use "../../../../scss/global/colors" as *;
+@use "../../../../scss/utils/functions" as fn;
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.logoContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $blue;
+
+    .logo {
+        width: 300px;
+    }
+}
+  .head {
+    margin-top: 100px;
+    font-size: fn.rem(24);
+    color: $heading-bold;
+  }
